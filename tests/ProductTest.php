@@ -207,26 +207,26 @@
             $this->assertEquals($new_price, $result);
         }
 
-        // function testFindByID()
-        // {
-        //     // Arrange
-        //     $name = "55 lb. keg";
-        //     $price = 49.50;
-        //     $test_product = new Product($name, $price);
-        //     $test_product->save();
-        //
-        //     $name2 = "45 lb. keg";
-        //     $price2 = 39.50;
-        //     $test_product2 = new Product($name2, $price2);
-        //     $test_product2->save();
-        //
-        //     // Act
-        //     $result = Product::findByID($test_product->getID());
-        //
-        //     // Assert
-        //     $this->assertEquals($test_product, $result);
-        // }
-        //
+        function testFindByID()
+        {
+            // Arrange
+            $name = "55 lb. keg";
+            $price = 49.50;
+            $test_product = new Product($name, $price);
+            $test_product->save();
+
+            $name2 = "45 lb. keg";
+            $price2 = 39.50;
+            $test_product2 = new Product($name2, $price2);
+            $test_product2->save();
+
+            // Act
+            $result = Product::findByID($test_product->getID());
+
+            // Assert
+            $this->assertEquals($test_product, $result);
+        }
+
         // function testFindByName()
         // {
         //     // Arrange

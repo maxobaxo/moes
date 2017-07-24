@@ -106,22 +106,20 @@
 
         static function findByID($search_id)
         {
-            // $found_cart = null;
-            // $returned_carts = $GLOBALS['DB']->prepare("SELECT * FROM carts WHERE id = :id;");
-            // $returned_carts->bindPARAM(':id', $search_id, PDO::PARAM_STR);
-            // $returned_carts->execute();
-            //
-            // foreach ($returned_carts as $cart) {
-            //     $order_date = $cart['order_date'];
-            //     $order_number = $cart['order_number'];
-            //     $order_cost = $cart['order_cost'];
-            //     $autoship = $cart['autoship'];
-            //     $id = $cart['id'];
-            //     if ($id == $search_id) {
-            //         $found_cart = new Cart($order_date, $order_number, $order_cost, $autoship, $id);
-            //     }
-            // }
-            // return $found_cart;
+            $found_product = null;
+            $returned_products = $GLOBALS['DB']->prepare("SELECT * FROM products WHERE id = :id;");
+            $returned_products->bindPARAM(':id', $search_id, PDO::PARAM_STR);
+            $returned_products->execute();
+
+            foreach ($returned_products as $product) {
+                $name = $product['name'];
+                $price = $product['price'];
+                $id = $product['id'];
+                if ($id == $search_id) {
+                    $found_product = new Product($name, $price, $id);
+                }
+            }
+            return $found_product;
         }
 
         static function findByName($search_name)
