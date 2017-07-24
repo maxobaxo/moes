@@ -34,18 +34,18 @@
 
         function getID()
         {
-            // return $this->id;
+            return $this->id;
         }
 
         function save()
         {
-            // $executed = $GLOBALS['DB']->exec("INSERT INTO carts (order_date, order_number, order_cost, autoship) VALUES ('{$this->getOrderDate()}', {$this->getOrderNumber()}, {$this->getOrderCost()}, {$this->getAutoship()});");
-            // if ($executed) {
-            //     $this->id = $GLOBALS['DB']->lastInsertId();
-            //     return true;
-            // } else {
-            //     return false;
-            // }
+            $executed = $GLOBALS['DB']->exec("INSERT INTO products (name, price) VALUES ('{$this->getName()}', {$this->getPrice()});");
+            if ($executed) {
+                $this->id = $GLOBALS['DB']->lastInsertId();
+                return true;
+            } else {
+                return false;
+            }
         }
 
         static function deleteAll()

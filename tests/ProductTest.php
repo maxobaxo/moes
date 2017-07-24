@@ -13,10 +13,10 @@
 
     class ProductTest extends PHPUnit_Framework_TestCase
     {
-        protected function tearDown()
-        {
-            Product::deleteAll();
-        }
+        // protected function tearDown()
+        // {
+        //     Product::deleteAll();
+        // }
 
         function testGetName()
         {
@@ -80,36 +80,36 @@
             $this->assertEquals($new_price, $result);
 
         }
-        //
-        // function testGetID()
-        // {
-        //     // Arrange
-        //     $name = "55 lb. keg";
-        //     $price = 49.50;
-        //     $test_product = new Product($name, $price);
-        //     $test_product->save();
-        //
-        //     // Act
-        //     $result = $test_product->getID();
-        //
-        //     // Assert
-        //     $this->assertTrue(is_numeric($result));
-        // }
-        //
-        // function testSave()
-        // {
-        //     // Arrange
-        //     $name = "55 lb. keg";
-        //     $price = 49.50;
-        //     $test_product = new Product($name, $price);
-        //
-        //     // Act
-        //     $executed = $test_product->save();
-        //
-        //     // Assert
-        //     $this->assertTrue($executed, 'The product was not saved to the database');
-        // }
-        //
+
+        function testGetID()
+        {
+            // Arrange
+            $name = "55 lb. keg";
+            $price = 49.50;
+            $test_product = new Product($name, $price);
+            $test_product->save();
+
+            // Act
+            $result = $test_product->getID();
+
+            // Assert
+            $this->assertTrue(is_numeric($result));
+        }
+
+        function testSave()
+        {
+            // Arrange
+            $name = "55 lb. keg";
+            $price = 49.50;
+            $test_product = new Product($name, $price);
+
+            // Act
+            $executed = $test_product->save();
+
+            // Assert
+            $this->assertTrue($executed, 'The product was not saved to the database');
+        }
+
         // function testDeleteAll()
         // {
         //     // Arrange
