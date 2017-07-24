@@ -84,13 +84,15 @@
 
         function updateName($new_name)
         {
-            // $executed = $GLOBALS['DB']->exec("UPDATE carts SET autoship = {$new_autoship} WHERE id = {$this->getID()};");
-            // if ($executed) {
-            //     $this->setAutoship($new_autoship);
-            //     return true;
-            // } else {
-            //     return false;
-            // }
+            $sql = "UPDATE products SET name = '{$new_name}' WHERE id = {$this->getID()};";
+            var_dump($sql);
+            $executed = $GLOBALS['DB']->exec($sql);
+            if ($executed) {
+                $this->setName($new_name);
+                return true;
+            } else {
+                return false;
+            }
         }
 
         function updatePrice($new_price)

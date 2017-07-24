@@ -170,25 +170,27 @@
             // Assert
             $this->assertEquals([$test_product], Product::getAll());
         }
-        
-        // function testUpdateName()
-        // {
-        //     // Arrange
-        //     $name = "55 lb. keg";
-        //     $price = 49.50;
-        //     $test_product = new Product($name, $price);
-        //     $test_product->save();
-        //
-        //     $new_name = "45 lb. keg";
-        //
-        //     // Act
-        //     $test_product->updateName($new_name);
-        //     $result = $test_product->getName();
-        //
-        //     // Assert
-        //     $this->assertEquals($new_name, $result);
-        // }
-        //
+
+        function testUpdateName()
+        {
+            // Arrange
+            $name = "55 lb. keg";
+            $price = number_format(49.50);
+            $test_product = new Product($name, $price);
+            $test_product->save();
+            var_dump($test_product);
+
+            $new_name = "45 lb. keg";
+
+            // Act
+            $test_product->updateName($new_name);
+            var_dump($test_product);
+            $result = $test_product->getName();
+
+            // Assert
+            $this->assertEquals($new_name, $result);
+        }
+
         // function testUpdatePrice()
         // {
         //     // Arrange
