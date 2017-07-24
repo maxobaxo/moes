@@ -10,4 +10,4 @@
 
 <!-- Customer can login with username and password.
   - Customer login will be authenticated.
-Customer can view store locations on a map. -->
+Customer can view store locations on a map.-->
