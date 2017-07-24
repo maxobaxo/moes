@@ -262,19 +262,80 @@
             $this->assertEquals($test_customer, $result);
         }
 
-        // function testUpdate()
-        // {
-        //     $contact = "Lisa";
-        //     $business = "Simpsons";
-        //     $address = "666 Flanders";
-        //     $phone =  '5394438245';
-        //     $email = "Magicashmeee@jesu.edu";
-        //     $test_customer = new Customer($contact, $business, $address, $phone, $email);
-        //     $new_contact = "Sneaks";
-        //     $new_
-        //     $test_brand->update($new_brand);
-        //     $this->assertEquals("Sneaks", $test_brand->getBrand());
-        // }
+        function testUpdateContact()
+        {
+            $contact = "Loso";
+            $business = "Plambo";
+            $address = "1826 Flanders";
+            $phone =  '51235245';
+            $email = "Maacesadeee@jesu.edu";
+            $test_customer = new Customer($contact, $business, $address, $phone, $email);
+            $test_customer->save();
+            $new_contact = "Sneaks";
+
+            $test_customer->updateContact($new_contact);
+            $this->assertEquals("Sneaks", $test_customer->getContact());
+        }
+
+        function testUpdateBusiness()
+        {
+            $contact = "Loso";
+            $business = "Plambo";
+            $address = "1826 Flanders";
+            $phone =  '51235245';
+            $email = "Maacesadeee@jesu.edu";
+            $test_customer = new Customer($contact, $business, $address, $phone, $email);
+            $test_customer->save();
+            $new_business = "Sneaks";
+
+            $test_customer->updateBusiness($new_business);
+            $this->assertEquals("Sneaks", $test_customer->getBusiness());
+        }
+
+        function testUpdateAddress()
+        {
+            $contact = "Loso";
+            $business = "Plambo";
+            $address = "1826 Flanders";
+            $phone =  '51235245';
+            $email = "Maacesadeee@jesu.edu";
+            $test_customer = new Customer($contact, $business, $address, $phone, $email);
+            $test_customer->save();
+            $new_address = "Sneaksy place";
+
+            $test_customer->updateAddress($new_address);
+            $this->assertEquals("Sneaksy place", $test_customer->getAddress());
+        }
+
+        function testUpdatePhone()
+        {
+            $contact = "Loso";
+            $business = "Plambo";
+            $address = "1826 Flanders";
+            $phone =  '51235245';
+            $email = "Maacesadeee@jesu.edu";
+            $test_customer = new Customer($contact, $business, $address, $phone, $email);
+            $test_customer->save();
+            $new_phone = "8675 Sneaks 09";
+
+            $test_customer->updatePhone($new_phone);
+            $this->assertEquals($new_phone, $test_customer->getPhone());
+        }
+
+        function testUpdateEmail()
+        {
+            $contact = "Loso";
+            $business = "Plambo";
+            $address = "1826 Flanders";
+            $phone =  '51235245';
+            $email = "Maacesadeee@jesu.edu";
+            $test_customer = new Customer($contact, $business, $address, $phone, $email);
+            $test_customer->save();
+            $new_email = "Sneaks@sneaksy.snek";
+
+            $test_customer->updateEmail($new_email);
+            $this->assertEquals("Sneaks@sneaksy.snek", $test_customer->getEmail());
+        }
 
 
     }

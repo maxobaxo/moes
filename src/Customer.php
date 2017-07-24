@@ -133,7 +133,60 @@ class Customer
         return $found_customer;
     }
 
+    function updateContact($new_contact)
+    {
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET contact = '{$new_contact}' WHERE id = {$this->getId()};");
+        if ($executed) {
+            $this->setContact($new_contact);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    function updateBusiness($new_business)
+    {
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET business = '{$new_business}' WHERE id = {$this->getId()};");
+        if ($executed) {
+            $this->setBusiness($new_business);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function updateAddress($new_address)
+    {
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET address = '{$new_address}' WHERE id = {$this->getId()};");
+        if ($executed) {
+            $this->setAddress($new_address);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function updatePhone($new_phone)
+    {
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET phone = '{$new_phone}' WHERE id = {$this->getId()};");
+        if ($executed) {
+            $this->setPhone($new_phone);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function updateEmail($new_email)
+    {
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET email = '{$new_email}' WHERE id = {$this->getId()};");
+        if ($executed) {
+            $this->setEmail($new_email);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 
