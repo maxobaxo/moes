@@ -129,5 +129,25 @@
                 return false;
             }
         }
+
+        static function findByID($search_id)
+        {
+            $found_cart = null;
+            $returned_carts = $GLOBALS['DB']->prepare("SELECT * FROM carts WHERE id = :id;");
+            $returned_carts->bindPARAM(':id', $search_id, PDO::PARAM_STR);
+            $returned_carts->execute();
+
+            foreach ($returned_carts as $cart) {
+                $order_date = $cart['order_date'];
+                $order_number = $cart['order_number'];
+                $order_cost = $cart['order_cost'];
+                $autoship = $cart['autoship'];
+                $id = $cart['id'];
+                if ($id == $search_id) {
+                    $found_cart = new Cart($order_date, $order_number, $order_cost, $autoship, $id);
+                }
+            }
+            return $found_cart;
+        }
     }
 ?>

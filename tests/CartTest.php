@@ -304,4 +304,27 @@
             $this->assertEquals($new_order_date, $result);
         }
 
+        function testFindByID()
+        {
+            // Arrange
+            $order_date = date('Y-m-d', time());
+            $order_number = 543;
+            $order_cost = number_format(55.50, 2);
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart->save();
+
+            $order_date2 = date('Y-m-d', time());
+            $order_number2 = 544;
+            $order_cost2 = number_format(55777.50, 2);
+            $autoship2 = 0;
+            $test_cart2 = new Cart($order_date2, $order_number2, $order_cost2, $autoship2);
+            $test_cart2->save();
+
+            // Act
+            $result = Cart::findByID($test_cart->getID());
+
+            // Assert
+            $this->assertEquals($test_cart, $result);
+        }
     }
