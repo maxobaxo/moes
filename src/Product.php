@@ -124,22 +124,20 @@
 
         static function findByName($search_name)
         {
-            // $found_cart = null;
-            // $returned_carts = $GLOBALS['DB']->prepare("SELECT * FROM carts WHERE order_date = :order_date;");
-            // $returned_carts->bindPARAM(':order_date', $search_order_date, PDO::PARAM_STR);
-            // $returned_carts->execute();
-            //
-            // foreach ($returned_carts as $cart) {
-            //     $order_date = $cart['order_date'];
-            //     $order_number = $cart['order_number'];
-            //     $order_cost = $cart['order_cost'];
-            //     $autoship = $cart['autoship'];
-            //     $id = $cart['id'];
-            //     if ($order_date == $search_order_date) {
-            //         $found_cart = new Cart($order_date, $order_number, $order_cost, $autoship, $id);
-            //     }
-            // }
-            // return $found_cart;
+            $found_product = null;
+            $returned_products = $GLOBALS['DB']->prepare("SELECT * FROM products WHERE name = :name;");
+            $returned_products->bindPARAM(':name', $search_name, PDO::PARAM_STR);
+            $returned_products->execute();
+
+            foreach ($returned_products as $product) {
+                $name = $product['name'];
+                $price = $product['price'];
+                $id = $product['id'];
+                if ($name == $search_name) {
+                    $found_product = new Product($name, $price, $id);
+                }
+            }
+            return $found_product;
         }
     }
 ?>
