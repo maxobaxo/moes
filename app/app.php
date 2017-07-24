@@ -21,6 +21,26 @@
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
-    $app->get("/customer", function() use ($app) {
-        return $app['twig']->render('customer.html.twig');
+    $app->get("/", function() use ($app) {
+        return $app['twig']->render('customer.html.twig', array('customers' => Customer::getAll()));
     });
+
+    $app->post("/add_customer", function() use ($app) {
+        $contact = $_POST['customer_contact'];
+        $business = $_POST['business_name'];
+        $address = $_POST['address'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        $new_customer = new Customer($contact, $business, $address, $phone, $email);
+        $new_customer->save();
+        $id = $new_customer->getId();
+        return $app['twig']->render('customer_home.html.twig', array( 'current_user' => $new_customer));
+    });
+
+    $app->post("/user_edit", function() use ($app) {
+        if(!empty($_POST['business_update']))
+        
+    })
+
+    return $app
+?>

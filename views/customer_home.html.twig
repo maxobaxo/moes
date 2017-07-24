@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Moe's Kombucha</title>
+  </head>
+  <body>
+    <h1>Your current user information:</h1>
+    <h3>Current business name: {{ current_user.getBusiness }}<form action="/user_edit" method="post">
+    <input type="text" name="business_update">
+    <input type="hidden" name="_method" value="patch">
+    </form></h3>
+    <h3>Current contact name: {{ current_user.getContact }}<form action="/user_edit" method="post">
+    <input type="text" name="contact_update">
+    <input type="hidden" name="_method" value="patch">
+    </form></h3>
+    <h3>Current listed address: {{ current_user.getAddress }}<form action="/user_edit" method="post">
+    <input type="text" name="address_update">
+    <input type="hidden" name="_method" value="patch">
+    </form></h3>
+    <h3>Contact phone number: {{ current_user.getPhone }}<form action="/user_edit" method="post">
+    <input type="text" name="phone_update">
+    <input type="hidden" name="_method" value="patch">
+    </form></h3>
+    <h3>Contact email address:{{ current_user.getEmail }}<form action="/user_edit" method="post">
+    <input type="text" name="email_update">
+    <input type="hidden" name="_method" value="patch">
+    </form></h3>
+  </body>
+</html>
