@@ -50,28 +50,26 @@
 
         static function deleteAll()
         {
-            // $executed = $GLOBALS['DB']->exec("DELETE FROM carts;");
-            // if ($executed) {
-            //     return true;
-            // } else {
-            //     return false;
-            // }
+            $executed = $GLOBALS['DB']->exec("DELETE FROM products;");
+            if ($executed) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         static function getAll()
         {
-            // $carts = array();
-            // $returned_carts = $GLOBALS['DB']->query("SELECT * FROM carts;");
-            // foreach ($returned_carts as $cart) {
-            //     $order_date = $cart['order_date'];
-            //     $order_number = $cart['order_number'];
-            //     $order_cost = $cart['order_cost'];
-            //     $autoship = $cart['autoship'];
-            //     $id = $cart['id'];
-            //     $new_cart = new Cart($order_date, $order_number, $order_cost, $autoship, $id);
-            //     array_push($carts, $new_cart);
-            // }
-            // return $carts;
+            $products = array();
+            $returned_products = $GLOBALS['DB']->query("SELECT * FROM products;");
+            foreach ($returned_products as $product) {
+                $name = $product['name'];
+                $price = $product['price'];
+                $id = $product['id'];
+                $new_product = new Product($name, $price, $id);
+                array_push($products, $new_product);
+            }
+            return $products;
         }
 
         function delete()

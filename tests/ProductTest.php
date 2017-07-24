@@ -13,10 +13,10 @@
 
     class ProductTest extends PHPUnit_Framework_TestCase
     {
-        // protected function tearDown()
-        // {
-        //     Product::deleteAll();
-        // }
+        protected function tearDown()
+        {
+            Product::deleteAll();
+        }
 
         function testGetName()
         {
@@ -110,47 +110,47 @@
             $this->assertTrue($executed, 'The product was not saved to the database');
         }
 
-        // function testDeleteAll()
-        // {
-        //     // Arrange
-        //     $name = "55 lb. keg";
-        //     $price = 49.50;
-        //     $test_product = new Product($name, $price);
-        //     $test_product->save();
-        //
-        //     $name2 = "45 lb. keg";
-        //     $price2 = 39.50;
-        //     $test_product2 = new Product($name2, $price2);
-        //     $test_product2->save();
-        //
-        //     // Act
-        //     Product::deleteAll();
-        //     $result = Product::getAll();
-        //
-        //     // Assert
-        //     $this->assertEquals([], $result);
-        // }
-        //
-        // function testGetAll()
-        // {
-        //     // Arrange
-        //     $name = "55 lb. keg";
-        //     $price = 49.50;
-        //     $test_product = new Product($name, $price);
-        //     $test_product->save();
-        //
-        //     $name2 = "45 lb. keg";
-        //     $price2 = 39.50;
-        //     $test_product2 = new Product($name2, $price2);
-        //     $test_product2->save();
-        //
-        //     // Act
-        //     $result = Product::getAll();
-        //
-        //     // Assert
-        //     $this->assertEquals([$test_product, $test_product2], $result);
-        // }
-        //
+        function testDeleteAll()
+        {
+            // Arrange
+            $name = "55 lb. keg";
+            $price = 49.50;
+            $test_product = new Product($name, $price);
+            $test_product->save();
+
+            $name2 = "45 lb. keg";
+            $price2 = 39.50;
+            $test_product2 = new Product($name2, $price2);
+            $test_product2->save();
+
+            // Act
+            Product::deleteAll();
+            $result = Product::getAll();
+
+            // Assert
+            $this->assertEquals([], $result);
+        }
+
+        function testGetAll()
+        {
+            // Arrange
+            $name = "55 lb. keg";
+            $price = number_format(49.50, 2);
+            $test_product = new Product($name, $price);
+            $test_product->save();
+
+            $name2 = "45 lb. keg";
+            $price2 = number_format(39.50, 2);
+            $test_product2 = new Product($name2, $price2);
+            $test_product2->save();
+
+            // Act
+            $result = Product::getAll();
+
+            // Assert
+            $this->assertEquals([$test_product, $test_product2], $result);
+        }
+
         // function testDelete()
         // {
         //     // Arrange
