@@ -19,5 +19,10 @@
             return $this->order_date;
         }
 
+        function setOrderDate($new_order_date)
+        {
+            $this->order_date = $new_order_date;
+        }
+
     }
 ?>
