@@ -74,12 +74,12 @@
 
         function delete()
         {
-            // $executed = $GLOBALS['DB']->exec("DELETE FROM carts WHERE id = {$this->getID()};");
-            // if ($executed) {
-            //     return true;
-            // } else {
-            //     return false;
-            // }
+            $executed = $GLOBALS['DB']->exec("DELETE FROM products WHERE id = {$this->getID()};");
+            if ($executed) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         function updateName($new_name)
