@@ -4,13 +4,15 @@
         private $order_date;
         private $order_number;
         private $order_cost;
+        private $autoship;
         private $id;
 
-        function __construct($order_date, $order_number, $order_cost, $id = null)
+        function __construct($order_date, $order_number, $order_cost, $autoship, $id = null)
         {
             $this->order_date = $order_date;
             $this->order_number = $order_number;
             $this->order_cost = $order_cost;
+            $this->autoship = 0;
             $this->id = $id;
         }
 

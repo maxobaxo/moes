@@ -19,7 +19,8 @@
             $order_date = date('Y-m-d', time());
             $order_number = 543;
             $order_cost = 55.50;
-            $test_cart = new Cart($order_date, $order_number, $order_cost);
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
 
             // Act
             $result = $test_cart->getOrderDate();
@@ -34,7 +35,8 @@
             $order_date = date('Y-m-d', time());
             $order_number = 543;
             $order_cost = 55.50;
-            $test_cart = new Cart($order_date, $order_number, $order_cost);
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
 
             $new_order_date = '2017-06-01';
 
@@ -52,7 +54,8 @@
             $order_date = date('Y-m-d', time());
             $order_number = 543;
             $order_cost = 55.50;
-            $test_cart = new Cart($order_date, $order_number, $order_cost);
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
 
             // Act
             $result = $test_cart->getOrderNumber();

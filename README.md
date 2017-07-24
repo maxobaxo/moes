@@ -7,6 +7,7 @@
 5. Customer can view order confirmation.
 6. Customer can view list of previous orders.
 7. Customer can reorder a previous order.
+8. Customer can elect to autoship a given order.
 
 <!-- Customer can login with username and password.
   - Customer login will be authenticated.
