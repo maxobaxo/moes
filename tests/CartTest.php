@@ -264,23 +264,23 @@
             $this->assertEquals([$test_cart], Cart::getAll());
         }
 
-        // function testUpdateAutoship()
-        // {
-        //     // Arrange
-        //     $order_date = date('Y-m-d', time());
-        //     $order_number = 543;
-        //     $order_cost = 55.50;
-        //     $autoship = 0;
-        //     $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
-        //     $test_cart->save();
-        //
-        //     $new_autoship = 1;
-        //
-        //     // Act
-        //     $test_cart2->updateAutoship($new_autoship);
-        //     $result = $test_cart->getAutoship();
-        //
-        //     // Assert
-        //     $this->assertEquals($new_autoship, $result);
-        // }
+        function testUpdateAutoship()
+        {
+            // Arrange
+            $order_date = date('Y-m-d', time());
+            $order_number = 543;
+            $order_cost = number_format(55.50, 2);
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart->save();
+
+            $new_autoship = 1;
+
+            // Act
+            $test_cart->updateAutoship($new_autoship);
+            $result = $test_cart->getAutoship();
+
+            // Assert
+            $this->assertEquals($new_autoship, $result);
+        }
     }

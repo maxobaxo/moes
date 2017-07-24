@@ -58,7 +58,7 @@
 
         function getID()
         {
-            return $this->autoship;
+            return $this->id;
         }
 
         function save()
@@ -108,9 +108,15 @@
             }
         }
 
-        // function update()
-        // {
-        //
-        // }
+        function updateAutoship($new_autoship)
+        {
+            $executed = $GLOBALS['DB']->exec("UPDATE carts SET autoship = {$new_autoship} WHERE id = {$this->getID()};");
+            if ($executed) {
+                $this->setAutoship($new_autoship);
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 ?>
