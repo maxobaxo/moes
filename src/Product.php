@@ -29,7 +29,7 @@
 
         function setPrice($new_price)
         {
-            // $this->price = $new_price;
+            $this->price = $new_price;
         }
 
         function getID()
