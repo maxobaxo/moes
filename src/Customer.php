@@ -188,12 +188,6 @@ class Customer
         }
     }
 
-
-
-
-
-
-
 }
 
 
