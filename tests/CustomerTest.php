@@ -337,6 +337,29 @@
             $this->assertEquals("Sneaks@sneaksy.snek", $test_customer->getEmail());
         }
 
+        function testDelete()
+        {
+            $contact = "Lisa";
+            $business = "Simpsons";
+            $address = "666 Flanders";
+            $phone =  '5394438245';
+            $email = "Magicashmeee@jesu.edu";
+            $test_customer = new Customer($contact, $business, $address, $phone, $email);
+            $test_customer->save();
+
+            $contact_2 = "Blergh";
+            $business_2 = "Blarmo";
+            $address_2 = "283 Raver fall";
+            $phone_2 =  '501238427845';
+            $email_2 = "Mkendo@frank.com";
+            $test_customer_2 = new Customer($contact_2, $business_2, $address_2, $phone_2, $email_2);
+            $test_customer_2->save();
+
+            $test_customer->delete();
+
+            $result = Customer::getAll();
+            $this->assertEquals([$test_customer_2], $result);
+        }
 
     }
 ?>

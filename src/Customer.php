@@ -188,6 +188,23 @@ class Customer
         }
     }
 
+
+    function delete()
+    {
+        $executed = $GLOBALS['DB']->exec("DELETE FROM customers WHERE id = {$this->getId()};");
+        if (!$executed) {
+            return false;
+        // } else {
+        //     $GLOBALS['DB']->exec("DELETE FROM  WHERE store_id = {$this->getId()};");
+        //     if (!$executed) {
+        //         return false;
+        //     } else {
+        //         return true;
+        //     }
+        }
+
+    }
+
 }
 
 
