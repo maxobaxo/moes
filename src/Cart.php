@@ -118,5 +118,16 @@
                 return false;
             }
         }
+
+        function updateOrderDate($new_order_date)
+        {
+            $executed = $GLOBALS['DB']->exec("UPDATE carts SET order_date = {$new_order_date} WHERE id = {$this->getID()};");
+            if ($executed) {
+                $this->setOrderDate($new_order_date);
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 ?>
