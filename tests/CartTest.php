@@ -393,10 +393,10 @@
             $test_product2->save();
 
             // Act
-            $test_cart->addProduct($test_product);
+            $test_cart->addProduct($test_product2);
 
             // Assert
-            $this->assertEquals([$test_product], $test_cart->getProducts());
+            $this->assertEquals([$test_product2], $test_cart->getProducts());
         }
 
         function testGetProducts()
