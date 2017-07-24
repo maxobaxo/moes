@@ -31,14 +31,29 @@
             return $this->order_number;
         }
 
+        function setOrderNumber($new_order_number)
+        {
+            $this->order_number = $new_order_number;
+        }
+
         function getOrderCost()
         {
             return $this->order_cost;
         }
 
+        function setOrderCost($new_order_cost)
+        {
+            $this->order_cost = $new_order_cost;
+        }
+
         function getAutoship()
         {
             return $this->autoship;
+        }
+
+        function setAutoship($new_autoship)
+        {
+            $this->autoship = $new_autoship;
         }
 
         function getID()

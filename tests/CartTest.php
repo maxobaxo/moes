@@ -64,6 +64,26 @@
             $this->assertEquals($order_number, $result);
         }
 
+        function testSetOrderNumber()
+        {
+            // Arrange
+            $order_date = date('Y-m-d', time());
+            $order_number = 543;
+            $order_cost = 55.50;
+            $autoship = 1;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+
+            $new_order_number = 544;
+
+            // Act
+            $test_cart->setOrderNumber($new_order_number);
+            $result = $test_cart->getOrderNumber();
+
+            // Assert
+            $this->assertEquals($new_order_number, $result);
+
+        }
+
         function testGetOrderCost()
         {
             // Arrange
@@ -80,6 +100,24 @@
             $this->assertEquals($order_cost, $result);
         }
 
+        function testSetOrderCost()
+        {
+            $order_date = date('Y-m-d', time());
+            $order_number = 543;
+            $order_cost = 55.50;
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+
+            $new_order_cost = 95.50;
+
+            // Act
+            $test_cart->setOrderCost($new_order_cost);
+            $result = $test_cart->getOrderCost();
+
+            // Assert
+            $this->assertEquals($new_order_cost, $result);
+        }
+
         function testGetAutoship()
         {
             // Arrange
@@ -94,6 +132,25 @@
 
             // Assert
             $this->assertEquals($autoship, $result);
+        }
+
+        function testSetAutoship()
+        {
+            // Arrange
+            $order_date = date('Y-m-d', time());
+            $order_number = 543;
+            $order_cost = 55.50;
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+
+            $new_autoship = 1;
+
+            // Act
+            $test_cart->setAutoship($new_autoship);
+            $result = $test_cart->getAutoship();
+
+            // Assert
+            $this->assertEquals($new_autoship, $result);
         }
 
         function testGetID()
