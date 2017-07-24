@@ -192,29 +192,29 @@
 
         function addProduct($product)
         {
-            // $executed = $GLOBALS['DB']->exec("INSERT INTO stores_brands (store_id, brand_id) VALUES ({$this->getId()}, {$brand->getId()});");
-            // if ($executed) {
-            //     return true;
-            // } else {
-            //     return false;
-            // }
+            $executed = $GLOBALS['DB']->exec("INSERT INTO carts_products (cart_id, product_id) VALUES ({$this->getID()}, {$product->getID()});");
+            if ($executed) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         function getProducts()
         {
-            // $returned_brands = $GLOBALS['DB']->query("SELECT brands.* FROM stores
-            // JOIN stores_brands ON (stores_brands.store_id = stores.id)
-            // JOIN brands ON (brands.id = stores_brands.brand_id)
-            // WHERE stores.id = {$this->getId()};");
-            // $brands = array();
-            // foreach ($returned_brands as $brand) {
-            //     $name = $brand['name'];
-            //     $price_pt = $brand['price_pt'];
-            //     $id = $brand['id'];
-            //     $new_brand = new Brand($name, $price_pt, $id);
-            //     array_push($brands, $new_brand);
-            // }
-            // return $brands;
+            $returned_products = $GLOBALS['DB']->query("SELECT products.* FROM carts
+            JOIN carts_products ON (carts_products.cart_id = carts.id)
+            JOIN products ON (products.id = carts_products.product_id)
+            WHERE carts.id = {$this->getID()};");
+            $products = array();
+            foreach ($returned_products as $product) {
+                $name = $product['name'];
+                $price = $product['price'];
+                $id = $product['id'];
+                $new_product = new Product($name, $price, $id);
+                array_push($products, $new_product);
+            }
+            return $products;
         }
 
     }
