@@ -24,7 +24,7 @@
 
         function getPrice()
         {
-            // return $this->price;
+            return $this->price;
         }
 
         function setPrice($new_price)

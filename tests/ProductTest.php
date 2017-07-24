@@ -49,20 +49,20 @@
             $this->assertEquals($new_name, $result);
         }
 
-        // function testGetPrice()
-        // {
-        //     // Arrange
-        //     $name = "55 lb. keg";
-        //     $price = 49.50;
-        //     $test_product = new Product($name, $price);
-        //
-        //     // Act
-        //     $result = $test_product->getPrice();
-        //
-        //     // Assert
-        //     $this->assertEquals($price, $result);
-        // }
-        //
+        function testGetPrice()
+        {
+            // Arrange
+            $name = "55 lb. keg";
+            $price = 49.50;
+            $test_product = new Product($name, $price);
+
+            // Act
+            $result = $test_product->getPrice();
+        
+            // Assert
+            $this->assertEquals($price, $result);
+        }
+
         // function testSetPrice()
         // {
         //     // Arrange
