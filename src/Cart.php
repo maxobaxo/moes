@@ -97,5 +97,15 @@
             }
             return $carts;
         }
+
+        function delete()
+        {
+            $executed = $GLOBALS['DB']->exec("DELETE FROM carts WHERE id = {$this->getID()};");
+            if ($executed) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 ?>
