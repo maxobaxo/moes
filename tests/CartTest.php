@@ -19,7 +19,7 @@
             $order_date = date('Y-m-d', time());
             $order_number = 543;
             $order_cost = 55.50;
-            $autoship = 0;
+            $autoship = 1;
             $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
 
             // Act
@@ -54,7 +54,7 @@
             $order_date = date('Y-m-d', time());
             $order_number = 543;
             $order_cost = 55.50;
-            $autoship = 0;
+            $autoship = 1;
             $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
 
             // Act
@@ -62,5 +62,70 @@
 
             // Assert
             $this->assertEquals($order_number, $result);
+        }
+
+        function testGetOrderCost()
+        {
+            // Arrange
+            $order_date = date('Y-m-d', time());
+            $order_number = 543;
+            $order_cost = 55.50;
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+
+            // Act
+            $result = $test_cart->getOrderCost();
+
+            // Assert
+            $this->assertEquals($order_cost, $result);
+        }
+
+        function testGetAutoship()
+        {
+            // Arrange
+            $order_date = date('Y-m-d', time());
+            $order_number = 543;
+            $order_cost = 55.50;
+            $autoship = 1;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+
+            // Act
+            $result = $test_cart->getAutoship();
+
+            // Assert
+            $this->assertEquals($autoship, $result);
+        }
+
+        function testGetID()
+        {
+            // Arrange
+            $order_date = date('Y-m-d', time());
+            $order_number = 543;
+            $order_cost = 55.50;
+            $autoship = 1;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart->save();
+
+            // Act
+            $result = $test_cart->getID();
+
+            // Assert
+            $this->assertTrue(is_numeric($result));
+        }
+
+        function testSave()
+        {
+            // Arrange
+            $order_date = date('Y-m-d', time());
+            $order_number = 543;
+            $order_cost = 55.50;
+            $autoship = 1;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+
+            // Act
+            $executed = $test_cart->save();
+
+            // Assert
+            $this->assertTrue($executed, 'The cart was not saved to the database');
         }
     }
