@@ -84,9 +84,7 @@
 
         function updateName($new_name)
         {
-            $sql = "UPDATE products SET name = '{$new_name}' WHERE id = {$this->getID()};";
-            var_dump($sql);
-            $executed = $GLOBALS['DB']->exec($sql);
+            $executed = $GLOBALS['DB']->exec("UPDATE products SET name = '{$new_name}' WHERE id = {$this->getID()};");
             if ($executed) {
                 $this->setName($new_name);
                 return true;
@@ -97,13 +95,13 @@
 
         function updatePrice($new_price)
         {
-            // $executed = $GLOBALS['DB']->exec("UPDATE carts SET order_date = {$new_order_date} WHERE id = {$this->getID()};");
-            // if ($executed) {
-            //     $this->setOrderDate($new_order_date);
-            //     return true;
-            // } else {
-            //     return false;
-            // }
+            $executed = $GLOBALS['DB']->exec("UPDATE products SET price = {$new_price} WHERE id = {$this->getID()};");
+            if ($executed) {
+                $this->setPrice($new_price);
+                return true;
+            } else {
+                return false;
+            }
         }
 
         static function findByID($search_id)
