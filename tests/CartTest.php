@@ -5,6 +5,7 @@
     */
 
     require_once 'src/Cart.php';
+    require_once 'src/Product.php';
 
     $server = 'mysql:host=localhost:8889;dbname=moes_test';
     $username = 'root';
@@ -374,5 +375,56 @@
 
             // Assert
             $this->assertEquals($test_cart, $result);
+        }
+
+        function testAddProduct()
+        {
+            // Arrange
+            $order_date = date('Y-m-d', time());
+            $order_number = 543;
+            $order_cost = number_format(89.00, 2);
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart->save();
+
+            $name2 = "45 lb. keg";
+            $price2 = 39.50;
+            $test_product2 = new Product($name2, $price2);
+            $test_product2->save();
+
+            // Act
+            $test_cart->addProduct($test_product);
+
+            // Assert
+            $this->assertEquals([$test_product], $test_cart->getProducts());
+        }
+
+        function testGetProducts()
+        {
+            // Arrange
+            $order_date = date('Y-m-d', time());
+            $order_number = 543;
+            $order_cost = number_format(89.00, 2);
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart->save();
+
+            $name = "55 lb. keg";
+            $price = number_format(49.50);
+            $test_product = new Product($name, $price);
+            $test_product->save();
+
+            $name2 = "45 lb. keg";
+            $price2 = number_format(39.50);
+            $test_product2 = new Product($name2, $price2);
+            $test_product2->save();
+
+            // Act
+            $test_cart->addProduct($test_product);
+            $test_cart->addProduct($test_product2);
+
+
+            // Assert
+            $this->assertEquals([$test_product, $test_product2], $test_cart->getProducts());
         }
     }

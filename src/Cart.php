@@ -189,5 +189,16 @@
             }
             return $found_cart;
         }
+
+        function addProduct()
+        {
+
+        }
+
+        function getProducts()
+        {
+
+        }
+
     }
 ?>

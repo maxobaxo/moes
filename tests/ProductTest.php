@@ -5,6 +5,7 @@
     */
 
     require_once 'src/Product.php';
+    require_once 'src/Cart.php';
 
     $server = 'mysql:host=localhost:8889;dbname=moes_test';
     $username = 'root';
