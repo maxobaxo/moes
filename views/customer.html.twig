@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Moe's Kombucha</title>
+  </head>
+  <body>
+    <form action="/add_customer" method="post">
+        <label for="customer_contact">Customer Contact</label>
+        <input type="text" name="customer_contact">
+        <label for="business_name">Business Name</label>
+        <input type="text" name="business_name" required>
+        <label for="address">Business/Delivery Address</label>
+        <input type="text" name="address" required>
+        <label for="phone">Phone Number</label>
+        <input type="text" name="phone" required>
+        <label for="email">Email Address</label>
+        <input type="text" name="email">
+        <button type="submit">Submit New Customer!</button>
+    </form>
+  </body>
+</html>
