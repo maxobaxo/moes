@@ -30,6 +30,7 @@
 
         function testSetOrderDate()
         {
+            // Arrange
             $order_date = date('Y-m-d', time());
             $order_number = 543;
             $order_cost = 55.50;
@@ -43,6 +44,20 @@
 
             // Assert
             $this->assertEquals($new_order_date, $result);
+        }
 
+        function testGetOrderNumber()
+        {
+            // Arrange
+            $order_date = date('Y-m-d', time());
+            $order_number = 543;
+            $order_cost = 55.50;
+            $test_cart = new Cart($order_date, $order_number, $order_cost);
+
+            // Act
+            $result = $test_cart->getOrderNumber();
+
+            // Assert
+            $this->assertEquals($order_number, $result);
         }
     }

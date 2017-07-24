@@ -24,5 +24,10 @@
             $this->order_date = $new_order_date;
         }
 
+        function getOrderNumber()
+        {
+            return $this->order_number;
+        }
+
     }
 ?>
