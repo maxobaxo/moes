@@ -76,7 +76,7 @@ class Customer
 
     function save()
     {
-        $executed = $GLOBALS['DB']->exec("INSERT INTO customers (contact, buisness, address, phone, email) VALUES ('{$this->getContact()}', '{$this->getBusiness()}', '{$this->getAddress()}', '{$this->getPhone()}', '{$this->getEmail()}')");
+        $executed = $GLOBALS['DB']->exec("INSERT INTO customers (contact, business, address, phone, email) VALUES ('{$this->getContact()}', '{$this->getBusiness()}', '{$this->getAddress()}', '{$this->getPhone()}', '{$this->getEmail()}')");
         if ($executed) {
             $this->id = $GLOBALS['DB']->lastInsertId();
             return true;
@@ -89,14 +89,15 @@ class Customer
     {
         $returned_customers = $GLOBALS['DB']->query("SELECT * FROM customers;");
         $customers = array();
-        foreach($returned_customers as $customer) {
+
+        foreach ($returned_customers as $customer) {
             $contact = $customer['contact'];
             $business = $customer['business'];
             $address = $customer['address'];
             $phone = $customer['phone'];
             $email = $customer['email'];
             $id = $customer['id'];
-            $new_customer= new Customer($contact, $business, $address, $phone, $email, $id);
+            $new_customer = new Customer($contact, $business, $address, $phone, $email, $id);
             array_push($customers, $new_customer);
         }
         return $customers;
