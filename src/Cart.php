@@ -63,7 +63,7 @@
 
         function save()
         {
-            $executed = $GLOBALS['DB']->exec("INSERT INTO carts (order_date, order_number, order_cost, autoship) VALUES ('{$this->getOrderDate()}', '{$this->getOrderNumber()}', '{$this->getOrderCost()}', '{$this->getAutoship()}');");
+            $executed = $GLOBALS['DB']->exec("INSERT INTO carts (order_date, order_number, order_cost, autoship) VALUES ('{$this->getOrderDate()}', {$this->getOrderNumber()}, {$this->getOrderCost()}, {$this->getAutoship()});");
             if ($executed) {
                 $this->id = $GLOBALS['DB']->lastInsertId();
                 return true;
@@ -72,5 +72,30 @@
             }
         }
 
+        static function deleteAll()
+        {
+            $executed = $GLOBALS['DB']->exec("DELETE FROM carts;");
+            if ($executed) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        static function getAll()
+        {
+            $carts = array();
+            $returned_carts = $GLOBALS['DB']->query("SELECT * FROM carts;");
+            foreach ($returned_carts as $cart) {
+                $order_date = $cart['order_date'];
+                $order_number = $cart['order_number'];
+                $order_cost = $cart['order_cost'];
+                $autoship = $cart['autoship'];
+                $id = $cart['id'];
+                $new_cart = new Cart($order_date, $order_number, $order_cost, $autoship, $id);
+                array_push($carts, $new_cart);
+            }
+            return $carts;
+        }
     }
 ?>
