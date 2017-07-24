@@ -244,16 +244,16 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = number_format(543);
+            $order_number = 543;
             $order_cost = number_format(55.50, 2);
-            $autoship = number_format(1);
+            $autoship = 1;
             $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
             $test_cart->save();
 
             $order_date2 = date('Y-m-d', time());
-            $order_number2 = number_format(544);
+            $order_number2 = 544;
             $order_cost2 = number_format(55777.50, 2);
-            $autoship2 = number_format(0);
+            $autoship2 = 0;
             $test_cart2 = new Cart($order_date2, $order_number2, $order_cost2, $autoship2);
             $test_cart2->save();
 
@@ -263,4 +263,24 @@
             // Assert
             $this->assertEquals([$test_cart], Cart::getAll());
         }
+
+        // function testUpdateAutoship()
+        // {
+        //     // Arrange
+        //     $order_date = date('Y-m-d', time());
+        //     $order_number = 543;
+        //     $order_cost = 55.50;
+        //     $autoship = 0;
+        //     $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+        //     $test_cart->save();
+        //
+        //     $new_autoship = 1;
+        //
+        //     // Act
+        //     $test_cart2->updateAutoship($new_autoship);
+        //     $result = $test_cart->getAutoship();
+        //
+        //     // Assert
+        //     $this->assertEquals($new_autoship, $result);
+        // }
     }
