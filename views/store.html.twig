@@ -1,31 +1,90 @@
 <html>
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>Moe's Kombucha</title>
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
 
+<!-- <div class="">
+///picture name and price
+
+</div> -->
+
+<div class="row">
+<!-- div for small keg -->
+  <div class="coloumn-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Baby keg
+      </div>
+      <div class="panel-body">
+        <img src="" alt="">
+        <ul>
+          <li>$100</li>
+          <li>Estimated Serving Size: 200 16 oz.</li>
+        </ul>
+      </div><!-- closing panel bodydiv -->
+    </div>
+  </div><!-- closing small keg div -->
+
+  <div class="coloumn-md-4">
+    <h3>Momma Keg</h3>
+    <h5>$150</h5>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Momma Keg</h3>
+      </div>
+      <div class="panel-body">
+        <img src="" alt="">
+        <ul>
+          <li>$150</li>
+          <li>Estimated Serving Size: 400 16 oz.</li>
+        </ul>
+
+      </div><!-- closing panel bodydiv -->
+    </div>
+  </div><!-- closing medium keg div -->
+
+  <div class="coloumn-md-4">
+    <h5>$200</h5>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Big Daddy Keg</h3>
+      </div>
+      <div class="panel-body">
+        <img src="" alt="">
+        <ul>
+          <li>$200</li>
+          <li>Estimated Serving Size: 600 16 oz.</li>
+        </ul>
+      </div><!-- closing panel bodydiv -->
+    </div>
+  </div><!-- closing large keg div -->
+</div><!-- closing row div -->
 
       <form action="/product_order" method="post">
-        <input type="hidden" name="product_name" value="15 gallon keg">
-        <input type="hidden" name="product_price" value="22">
-        <input type="text" name="product_name">
+        <input type="hidden" name="product_name" value="15_gallon_keg">
+        <input type="hidden" name="product_price" value="100">
+        <input type="number" name="15_gallon_quantity">
         <label for="quantity">Quantity:</label>
-        <button type="submit">Submit!</button>
-
+        <button type="submit">Add to cart!</button>
       </form>
       <form action="/product_order" method="post">
         <input type="hidden" name="product_name" value="30_gallon_keg">
-        <input type="hidden" name="product_price" value="30">
+        <input type="hidden" name="product_price" value="150">
+        <input type="number" name="30_gallon_quantity">
         <label for="quantity">Quantity:</label>
-        <button type="submit">Submit!</button>
+        <button type="submit">Add to cart!</button>
       </form>
       <form action="/product_order" method="post">
         <input type="hidden" name="product_name" value="60_gallon_keg">
-        <input type="hidden" name="product_price" value="40">
+        <input type="hidden" name="product_price" value="200">
+        <input type="number" name="60_gallon_quantity">
         <label for="quantity">Quantity:</label>
-        <button type="submit">Submit!</button>
+        <button type="submit">Add to cart!</button>
       </form>
 
       {% if products is not empty %}
