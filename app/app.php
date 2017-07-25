@@ -23,7 +23,7 @@
     Request::enableHttpMethodParameterOverride();
 
     $app->get("/", function() use ($app) {
-        $cart = new Cart("2017-07-25", 723, number_format(55.50), 0);
+        $cart = new Cart("2017-07-25", 723, number_format(55.50, 2), 0);
         $cart->save();
         return $app['twig']->render('index.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
