@@ -5,15 +5,64 @@ pale sea green: #D0E8DA;
 white: #FFFFFF;
 */
 
-.nav {
-    background-color: #42A4C5;
-    color: #ffffff;
+/*font-family: 'Nixie One', cursive;
+font-family: 'Raleway', sans-serif; *
+font-family: 'Bubbler One', sans-serif; **
+font-family: 'El Messiri', sans-serif;
+font-family: 'Syncopate', sans-serif; FAT ONE **
+font-family: 'Open Sans Condensed', sans-serif; **
+font-family: 'Lobster', cursive;
+font-family: 'Arima Madurai', cursive;
+font-family: 'PT Sans Narrow', sans-serif; *
+font-family: 'Crushed', cursive;*/
+body {
+    font-size: 2rem;
+}
+
+body, h5, h6 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Crushed', sans-serif;
+    font-weight: 500;
+    color: #42A4C5;
 }
 
 a {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.5rem;
     color: #ffffff;
 }
 
 a:hover {
+    font-family: 'Syncopate', sans-serif;
     color: #d8ecf3;
+}
+
+.container-fluid {
+    padding: 0 0 0 0;
+}
+
+header {
+    margin: 0 0 0 0;
+}
+
+.nav {
+    height: 3rem;
+    background-color: #42A4C5;
+    color: #ffffff;
+}
+
+ul.navbar {
+    margin: 0 0 0 0;
+}
+
+li.nav-item {
+    margin: 0 17.5rem 0 4.5rem;
+}
+
+.container-main {
+    margin-left: 5rem;
 }
