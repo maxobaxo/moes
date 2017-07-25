@@ -28,17 +28,25 @@
         return $app['twig']->render('index.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
 
-    $app->get("/customers", function() use ($app) {
-        $warning = false;
-        $current_user = false;
-        $carts = false;
-        // $current_user = new Customer(null, null, null, null, null, null, null);
-        // $current_user->save();
-        if (!(empty($current_user))) {
-            $carts = $current_user->getCarts();
-        }
-        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $carts));
-    });
+    // $app->post("/register", function() use ($app) {
+    //     $warning = false;
+    //     $current_user = false;
+    //     $carts = false;
+    //     if (!(empty($current_user))) {
+    //         $carts = $current_user->getCarts();
+    //     }
+    //     return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $carts));
+    // });
+
+    // $app->get("/login", function() use ($app) {
+    //     $warning = false;
+    //     $current_user = false;
+    //     $carts = false;
+    //     if (!(empty($current_user))) {
+    //         $carts = $current_user->getCarts();
+    //     }
+    //     return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $carts));
+    // });
 
     $app->post("/customers", function() use ($app) {
         $contact = $_POST['customer_contact'];
