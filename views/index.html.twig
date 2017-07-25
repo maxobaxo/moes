@@ -21,36 +21,60 @@
                     </ul>
                 </nav>
             </header>
-        <div class="row">
-            <div class="container-main">
-                <div class="main col-md-9">
-                    <!-- main content will go here -->
-                    <!-- login & register forms will go here on their respective pages -->
-                    <h1>This is an H1</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <h2>This is an H2</h2>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <h3>This is an H3</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <h4>This is an H4</h4>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="sidebar col-md-3">
-                    {% if cart is not empty %}
-                        <h1>Your Cart</h1>
-                        <h3>Order Number: {{ cart.getOrderNumber }}</h3>
-                        {% for product in cart_products %}
-                            <h4><span class="product-name">{{ product.getName }}</span><span class="product-price">{{ product.getPrice }}</span></h4>
-                        {% endfor %}
-                        <h2>Your Total: ${{ cart.getOrderCost }}</h2>
-                    {% endif %}
+        <div class="outside-container">
+            <div class="row">
+                <div class="container-main">
+                    <div class="main col-md-9">
+                        <!-- main content will go here -->
+                        <!-- login & register forms will go here on their respective pages -->
+                        <h1>This is an H1</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <h2>This is an H2</h2>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <h3>This is an H3</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <h4>This is an H4</h4>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <h5>This is an H3</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <h6>This is an H4</h6>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <div class="sidebar col-md-3">
+                        {% if cart is not empty %}
+                            <h1>Your Cart</h1>
+                            <h3>Order Number: {{ cart.getOrderNumber }}</h3>
+                            {% for product in cart_products %}
+                                <h4><span class="product-name">{{ product.getName }}</span><span class="product-price">{{ product.getPrice }}</span></h4>
+                            {% endfor %}
+                            <h2>Your Total: ${{ cart.getOrderCost }}</h2>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-      </div>
-      <footer>
-
-      </footer>
-
-    </div>
-  </body>
+        </div>
+        <footer>
+            <div class="row">
+                <div class="footer-container">
+                    <div class="col-md-3">
+                        <h4>This is an H4</h4>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>This is an H4</h4>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>This is an H4</h4>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>This is an H4</h4>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        </div>
+    </body>
 </html>

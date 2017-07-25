@@ -68,6 +68,13 @@ li.nav-item {
     margin: 0 17.5rem 0 4.5rem;
 }
 
+.outside-container {
+    background-image: url("/img/waves_sm.png");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: top;
+}
+
 .container-main {
     margin-left: 5rem;
 }
@@ -88,4 +95,21 @@ li.nav-item {
     font-family: 'Open Sans Condensed', sans-serif;
     font-weight: 300;
     color: #7EB49C;
+}
+
+footer {
+    background-color: #42A4C5;
+    color: #ffffff;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
+    padding: 0 0 4rem 0;
+}
+
+.footer-container {
+    margin: 0 4rem 0 4rem;
+}
+
+footer a {
+    font-family: 'Syncopate', sans-serif;
+    color: #d8ecf3;
 }
