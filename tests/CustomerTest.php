@@ -224,7 +224,9 @@
             $address = "666 weenie bopper";
             $phone =  '50338438245';
             $email = "Magicalponies@haskos.edu";
-            $test_customer = new Customer($contact, $business, $address, $phone, $email);
+            $login = "Talon";
+            $password = "Robot";
+            $test_customer = new Customer($contact, $business, $address, $phone, $email, $login, $password);
             $test_customer->save();
 
             $contact_2 = "Krang";
@@ -232,12 +234,16 @@
             $address_2 = "283 Ravens flight";
             $phone_2 =  '501238438245';
             $email_2 = "Monkeyflight@frank.com";
-            $test_customer_2 = new Customer($contact_2, $business_2, $address_2, $phone_2, $email_2);
+            $login_2 = "Talons";
+            $password_2 = "Robots";
+            $test_customer_2 = new Customer($contact_2, $business_2, $address_2, $phone_2, $email_2, $login_2, $password_2);
             $test_customer_2->save();
 
             $result = Customer::getAll();
+            $assert_1 = Customer::find($test_customer->getID());
+            $assert_2 = Customer::find($test_customer_2->getID());
 
-            $this->assertEquals([$test_customer, $test_customer_2], $result);
+            $this->assertEquals([$assert_1, $assert_2], $result);
         }
 
         function testFind()
@@ -379,7 +385,9 @@
             $address = "666 Flanders";
             $phone =  '5394438245';
             $email = "Magicashmeee@jesu.edu";
-            $test_customer = new Customer($contact, $business, $address, $phone, $email);
+            $login = "Majesty";
+            $password = "Squalor";
+            $test_customer = new Customer($contact, $business, $address, $phone, $email, $login, $password);
             $test_customer->save();
 
             $contact_2 = "Blergh";
@@ -387,7 +395,9 @@
             $address_2 = "283 Raver fall";
             $phone_2 =  '501238427845';
             $email_2 = "Mkendo@frank.com";
-            $test_customer_2 = new Customer($contact_2, $business_2, $address_2, $phone_2, $email_2);
+            $login_2 = "lasers";
+            $password_2 = "Photon";
+            $test_customer_2 = new Customer($contact_2, $business_2, $address_2, $phone_2, $email_2, $login_2, $password_2);
             $test_customer_2->save();
 
             $test_customer->delete();

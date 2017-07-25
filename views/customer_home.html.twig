@@ -6,6 +6,7 @@
   <body>
     <h1>Your current user information:</h1>
     {{ warning }}
+
     {% if current_user is empty %}
     Please create an account!
     <form action="/customers" method="post">
@@ -22,10 +23,11 @@
         <label for="login">Preferred Login</label>
         <input type="text" name="login">
         <label for="password">Preferred Password</label>
-        <input type="text" name="password">
+        <input type="password" name="password">
         <button type="submit">Submit New Customer!</button>
     </form>
     {% else %}
+    <h2>Edit your currently selected customer information:</h2>
     <h3>Current business name: {{ current_user.getBusiness }}<form action="/user_edit/{{ current_user.getId }}" method="post">
     <input type="text" name="business_update">
     <input type="hidden" name="_method" value="patch">
