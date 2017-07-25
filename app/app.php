@@ -37,10 +37,30 @@
         return $app['twig']->render('customer_home.html.twig', array( 'current_user' => $new_customer));
     });
 
-    $app->post("/user_edit", function() use ($app) {
+    $app->patch("/user_edit/{id}", function($id) use ($app) {
+        $current_customer = Customer::find($id);
         if(!empty($_POST['business_update']))
-        
-    })
+        {
+            $current_customer->updateBusiness($_POST['business_update']);
+        }
+        if(!empty($_POST['contact_update']))
+        {
+            $current_customer->updateContact($_POST['contact_update']);
+        }
+        if(!empty($_POST['address_update']))
+        {
+            $current_customer->updateAddress($_POST['address_update']);
+        }
+        if(!empty($_POST['phone_update']))
+        {
+            $current_customer->updatePhone($_POST['phone_update']);
+        }
+        if(!empty($_POST['email_update']))
+        {
+            $current_customer->updateEmail($_POST['email_update']);
+        }
+        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_customer));
+    });
 
     return $app
 ?>
