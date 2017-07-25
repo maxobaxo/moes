@@ -7,12 +7,12 @@
 .product {
   overflow: hidden;
   text-align: center;
-  background-color: #D0E8DA;
+  background-color: #A2E8C9;
   color: white;
 }
 
 .panel-body {
-  background-color: #D0E8DA;
+  background-color: #A2E8C9;
   border: hidden;
 }
 
@@ -21,6 +21,18 @@
 }
 
 
-.panel-heading {
-  background-color: #2F855E;
+.panel-default {
+  background-color: #A2E8C9;
+}
+
+.submit-btns {
+  color: black;
+  background-color: inherit;
+}
+
+.price-text {
+  text-shadow: 1px 1px #49685B;
+  color: #ffff;
+  list-style-type: none;
+  font-size: 20px;
 }
