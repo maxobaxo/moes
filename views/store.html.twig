@@ -5,7 +5,7 @@
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row">
+
 
 <!-- <div class="">
 ///picture name and price
@@ -14,10 +14,10 @@
 
 <div class="row">
 <!-- div for small keg -->
-  <div class="coloumn-md-4">
+  <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        Baby keg
+        <h3>Baby keg</h3>
       </div>
       <div class="panel-body">
         <img src="" alt="">
@@ -25,13 +25,16 @@
           <li>$100</li>
           <li>Estimated Serving Size: 200 16 oz.</li>
         </ul>
+        <form action="/product_order" method="post">
+          <input type="hidden" name="product_name" value="15_gallon_keg">
+          <input type="hidden" name="product_price" value="100">
+          <button type="submit">Add to cart!</button>
+        </form>
       </div><!-- closing panel bodydiv -->
     </div>
   </div><!-- closing small keg div -->
 
-  <div class="coloumn-md-4">
-    <h3>Momma Keg</h3>
-    <h5>$150</h5>
+  <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3>Momma Keg</h3>
@@ -42,14 +45,16 @@
           <li>$150</li>
           <li>Estimated Serving Size: 400 16 oz.</li>
         </ul>
-
+        <form action="/product_order" method="post">
+          <input type="hidden" name="product_name" value="30_gallon_keg">
+          <input type="hidden" name="product_price" value="150">
+          <button type="submit">Add to cart!</button>
+        </form>
       </div><!-- closing panel bodydiv -->
     </div>
   </div><!-- closing medium keg div -->
 
-  <div class="coloumn-md-4">
-    <h5>$200</h5>
-
+  <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3>Big Daddy Keg</h3>
@@ -60,32 +65,17 @@
           <li>$200</li>
           <li>Estimated Serving Size: 600 16 oz.</li>
         </ul>
+        <form action="/product_order" method="post">
+          <input type="hidden" name="product_name" value="60_gallon_keg">
+          <input type="hidden" name="product_price" value="200">
+          <button type="submit">Add to cart!</button>
+        </form>
+
       </div><!-- closing panel bodydiv -->
     </div>
   </div><!-- closing large keg div -->
 </div><!-- closing row div -->
 
-      <form action="/product_order" method="post">
-        <input type="hidden" name="product_name" value="15_gallon_keg">
-        <input type="hidden" name="product_price" value="100">
-        <input type="number" name="15_gallon_quantity">
-        <label for="quantity">Quantity:</label>
-        <button type="submit">Add to cart!</button>
-      </form>
-      <form action="/product_order" method="post">
-        <input type="hidden" name="product_name" value="30_gallon_keg">
-        <input type="hidden" name="product_price" value="150">
-        <input type="number" name="30_gallon_quantity">
-        <label for="quantity">Quantity:</label>
-        <button type="submit">Add to cart!</button>
-      </form>
-      <form action="/product_order" method="post">
-        <input type="hidden" name="product_name" value="60_gallon_keg">
-        <input type="hidden" name="product_price" value="200">
-        <input type="number" name="60_gallon_quantity">
-        <label for="quantity">Quantity:</label>
-        <button type="submit">Add to cart!</button>
-      </form>
 
       {% if products is not empty %}
         {% for product in products %}
@@ -95,8 +85,8 @@
 
 
 
-      </div>
-    </div>
+      </div><!-- closing for container -->
+
 
   </body>
 </html>
