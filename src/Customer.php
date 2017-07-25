@@ -7,9 +7,11 @@ class Customer
     private $address;
     private $phone;
     private $email;
+    private $login;
+    private $password;
     private $id;
 
-    function __construct($contact, $business, $address, $phone, $email, $id = null)
+    function __construct($contact, $business, $address, $phone, $email, $login = null, $password = null, $id = null)
     {
         $this->contact = $contact;
         $this->business = $business;
@@ -17,6 +19,8 @@ class Customer
         $this->phone = $phone;
         $this->email = $email;
         $this->id = $id;
+        $this->login = $login;
+        $this->password = $password;
     }
 
     function getContact()
@@ -69,14 +73,40 @@ class Customer
         $this->email = $new_email;
     }
 
-    function getId()
+    function getLogin()
+    {
+        return $this->login;
+    }
+
+    function setLogin($new_login)
+    {
+        $this->login = $new_login;
+    }
+
+    function getPassword()
+    {
+        return $this->password;
+    }
+
+    function setPassword($new_pass)
+    {
+        $this->password = $new_pass;
+    }
+
+    function getID()
     {
         return $this->id;
     }
 
     function save()
     {
-        $executed = $GLOBALS['DB']->exec("INSERT INTO customers (contact, business, address, phone, email) VALUES ('{$this->getContact()}', '{$this->getBusiness()}', '{$this->getAddress()}', '{$this->getPhone()}', '{$this->getEmail()}')");
+        $login = $this->getLogin();
+        $customers = Customer::getAll();
+        foreach($customers as $customer){
+        if ($customer->getLogin() == $login){
+        return false;
+        }}
+        $executed = $GLOBALS['DB']->exec("INSERT INTO customers (contact, business, address, phone, email, login, password) VALUES ('{$this->getContact()}', '{$this->getBusiness()}', '{$this->getAddress()}', '{$this->getPhone()}', '{$this->getEmail()}', '{$this->getLogin()}', '{$this->getPassword()}')");
         if ($executed) {
             $this->id = $GLOBALS['DB']->lastInsertId();
             return true;
@@ -97,7 +127,9 @@ class Customer
             $phone = $customer['phone'];
             $email = $customer['email'];
             $id = $customer['id'];
-            $new_customer = new Customer($contact, $business, $address, $phone, $email, $id);
+            $login = $customer['login'];
+            $password = $customer['password'];
+            $new_customer = new Customer($contact, $business, $address, $phone, $email, $login, $password, $id);
             array_push($customers, $new_customer);
         }
         return $customers;
@@ -126,8 +158,10 @@ class Customer
             $phone = $customer['phone'];
             $email = $customer['email'];
             $id = $customer['id'];
+            $login = $customer['login'];
+            $password = $customer['password'];
             if ($id == $search_id) {
-                $found_customer = new Customer($contact, $business, $address, $phone, $email, $id);
+                $found_customer = new Customer($contact, $business, $address, $phone, $email, $login, $password, $id);
             }
         }
         return $found_customer;
@@ -135,7 +169,7 @@ class Customer
 
     function updateContact($new_contact)
     {
-        $executed = $GLOBALS['DB']->exec("UPDATE customers SET contact = '{$new_contact}' WHERE id = {$this->getId()};");
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET contact = '{$new_contact}' WHERE id = {$this->getID()};");
         if ($executed) {
             $this->setContact($new_contact);
             return true;
@@ -146,7 +180,7 @@ class Customer
 
     function updateBusiness($new_business)
     {
-        $executed = $GLOBALS['DB']->exec("UPDATE customers SET business = '{$new_business}' WHERE id = {$this->getId()};");
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET business = '{$new_business}' WHERE id = {$this->getID()};");
         if ($executed) {
             $this->setBusiness($new_business);
             return true;
@@ -157,7 +191,7 @@ class Customer
 
     function updateAddress($new_address)
     {
-        $executed = $GLOBALS['DB']->exec("UPDATE customers SET address = '{$new_address}' WHERE id = {$this->getId()};");
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET address = '{$new_address}' WHERE id = {$this->getID()};");
         if ($executed) {
             $this->setAddress($new_address);
             return true;
@@ -168,7 +202,7 @@ class Customer
 
     function updatePhone($new_phone)
     {
-        $executed = $GLOBALS['DB']->exec("UPDATE customers SET phone = '{$new_phone}' WHERE id = {$this->getId()};");
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET phone = '{$new_phone}' WHERE id = {$this->getID()};");
         if ($executed) {
             $this->setPhone($new_phone);
             return true;
@@ -179,7 +213,7 @@ class Customer
 
     function updateEmail($new_email)
     {
-        $executed = $GLOBALS['DB']->exec("UPDATE customers SET email = '{$new_email}' WHERE id = {$this->getId()};");
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET email = '{$new_email}' WHERE id = {$this->getID()};");
         if ($executed) {
             $this->setEmail($new_email);
             return true;
@@ -188,14 +222,40 @@ class Customer
         }
     }
 
+    function getCarts()
+    {
+        $returned_carts = $GLOBALS['DB']->query("SELECT carts.* FROM customers JOIN customers_carts ON (customers_carts.customer_id = customers.id) JOIN carts ON (carts.id = customers_carts.cart_id) WHERE customers.id = {$this->getID()};");
+        $carts = array();
+        foreach ($returned_carts as $cart) {
+            $order_date = $cart['order_date'];
+            $order_number = $cart['order_number'];
+            $order_cost = $cart['order_cost'];
+            $autoship = $cart['autoship'];
+            $id = $cart['id'];
+            $new_cart = new Cart($order_date, $order_number, $order_cost, $autoship, $id);
+            array_push($carts, $new_cart);
+        }
+        return $carts;
+    }
+
+    function addCart($cart)
+    {
+        $returned_carts = "INSERT INTO customers_carts (customer_id, cart_id) VALUES ({$this->getID()}, {$cart->getID()});";
+        $executed = $GLOBALS['DB']->exec("INSERT INTO customers_carts (customer_id, cart_id) VALUES ({$this->getID()}, {$cart->getID()});");
+        if ($executed) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     function delete()
     {
-        $executed = $GLOBALS['DB']->exec("DELETE FROM customers WHERE id = {$this->getId()};");
+        $executed = $GLOBALS['DB']->exec("DELETE FROM customers WHERE id = {$this->getID()};");
         if (!$executed) {
             return false;
         // } else {
-        //     $GLOBALS['DB']->exec("DELETE FROM  WHERE store_id = {$this->getId()};");
+        //     $GLOBALS['DB']->exec("DELETE FROM  WHERE store_id = {$this->getID()};");
         //     if (!$executed) {
         //         return false;
         //     } else {
@@ -204,6 +264,8 @@ class Customer
         }
 
     }
+
+    
 
 }
 

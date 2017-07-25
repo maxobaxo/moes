@@ -28,41 +28,50 @@
         return $app['twig']->render('index.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
 
-    $app->post("/add_customer", function() use ($app) {
+    $app->post("/customers", function() use ($app) {
         $contact = $_POST['customer_contact'];
         $business = $_POST['business_name'];
         $address = $_POST['address'];
         $phone = $_POST['phone'];
         $email = $_POST['email'];
-        $new_customer = new Customer($contact, $business, $address, $phone, $email);
-        $new_customer->save();
-        $id = $new_customer->getId();
-        return $app['twig']->render('customer_home.html.twig', array( 'current_user' => $new_customer));
+        $login = $_POST['login'];
+        $password = $_POST['password'];
+        $new_customer = new Customer($contact, $business, $address, $phone, $email, $login, $password);
+
+        $warning = false;
+        if ($new_customer->save() == false)
+        {
+            $warning = "Error: Login already in use. New customer not saved! ";
+        }
+        $current_user = Customer::find($new_customer->getID());
+
+        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning));
     });
 
     $app->patch("/user_edit/{id}", function($id) use ($app) {
-        $current_customer = Customer::find($id);
+        $current_user = Customer::find($id);
         if(!empty($_POST['business_update']))
         {
-            $current_customer->updateBusiness($_POST['business_update']);
+            $current_user->updateBusiness($_POST['business_update']);
         }
         if(!empty($_POST['contact_update']))
         {
-            $current_customer->updateContact($_POST['contact_update']);
+            $current_user->updateContact($_POST['contact_update']);
         }
         if(!empty($_POST['address_update']))
         {
-            $current_customer->updateAddress($_POST['address_update']);
+            $current_user->updateAddress($_POST['address_update']);
         }
         if(!empty($_POST['phone_update']))
         {
-            $current_customer->updatePhone($_POST['phone_update']);
+            $current_user->updatePhone($_POST['phone_update']);
         }
         if(!empty($_POST['email_update']))
         {
-            $current_customer->updateEmail($_POST['email_update']);
+            $current_user->updateEmail($_POST['email_update']);
         }
-        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_customer));
+        $warning = false;
+        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning));
     });
 
     return $app

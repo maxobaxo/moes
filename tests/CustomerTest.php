@@ -337,6 +337,41 @@
             $this->assertEquals("Sneaks@sneaksy.snek", $test_customer->getEmail());
         }
 
+        function testGetCart()
+        {
+            //Arrange
+            $contact = "Bob";
+            $business = "Bobs Burgers";
+            $address = "12 nw";
+            $phone = "555-5555";
+            $email = "bob@bobs.com";
+            $test_customer = new Customer($contact, $business, $address, $phone, $email);
+            $test_customer->save();
+
+            $order_date = "2011-02-02";
+            $order_number = "12";
+            $order_cost = "1.00";
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_number,
+            $order_cost, $autoship);
+            $test_cart->save();
+
+            $order_date_2 = "2012-03-03";
+            $order_number_2 = "13";
+            $order_cost_2 = "2.00";
+            $autoship_2 = 0;
+            $test_cart_2 = new Cart($order_date_2, $order_number_2, $order_cost_2, $autoship_2);
+            $test_cart_2->save();
+
+            //Act
+            $test_customer->addCart($test_cart);
+            $test_customer->addCart($test_cart_2);
+
+            //Assert
+            $result = $test_customer->getCarts();
+            $this->assertEquals([$test_cart, $test_cart_2], $result);
+        }
+
         function testDelete()
         {
             $contact = "Lisa";
