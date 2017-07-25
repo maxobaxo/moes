@@ -6,6 +6,8 @@
   <body>
     <h1>Your current user information:</h1>
     {{ warning }}
+    {% if current_user is empty %}
+    <h2>Log-in here if you have an account!</h2>
     <form action="/login" method="post">
         <label for="existing_login">Enter your login</label>
         <input type="text" name="existing_login">
@@ -13,8 +15,7 @@
         <input type="password" name="existing_password">
         <button type="submit">Login</button>
     </form>
-    {% if current_user is empty %}
-    Please create an account!
+    <h2>Create a new account here!</h2>
     <form action="/customers" method="post">
         <label for="customer_contact">Customer Contact</label>
         <input type="text" name="customer_contact">
@@ -56,5 +57,10 @@
     <input type="hidden" name="_method" value="patch">
     </form></h3>
     {% endif %}
+    <h1>To the store!</h1>
+    <form action="/store" method="post">
+        <input type="hidden" name="current_id" value="{{ current_user.getID }}">
+        <button type="submit">Go to store</button>
+    </form>
   </body>
 </html>
