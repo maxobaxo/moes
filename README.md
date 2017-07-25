@@ -12,3 +12,10 @@
 <!-- Customer can login with username and password.
   - Customer login will be authenticated.
 Customer can view store locations on a map.-->
+
+
+## Acknowledgements
+
+Thanks to Vadim Smolenskiy for the adorable drawings of the kegs. Here's a link to his website.
+
+https://dribbble.com/shots/1085951-Kegs-and-Bottles-II

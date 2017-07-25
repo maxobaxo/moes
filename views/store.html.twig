@@ -1,80 +1,77 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
     <title>Moe's Kombucha</title>
   </head>
   <body>
     <div class="container-fluid">
 
+      <div class="well product">
+        <div class="row">
+        <!-- div for small keg -->
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3>5 Gallons</h3>
+              </div>
+              <div class="panel-body">
+                <img src="/img/fivegal.png" alt="five gallon keg">
+                <ul>
+                  <li>$100</li>
+                  <li>Estimated Serving Size: 200 16 oz.</li>
+                </ul>
+                <form action="/product_order" method="post">
+                  <input type="hidden" name="product_name" value="5_gallon_keg">
+                  <input type="hidden" name="product_price" value="100">
+                  <button type="submit">Add to cart!</button>
+                </form>
+              </div><!-- closing panel bodydiv -->
+            </div>
+          </div><!-- closing small keg div -->
 
-<!-- <div class="">
-///picture name and price
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3>Seven Gallons</h3>
+              </div>
+              <div class="panel-body">
+                <img src="/img/seven.png" alt="seven gallon keg">
+                <ul>
+                  <li>$150</li>
+                  <li>Estimated Serving Size: 400 16 oz.</li>
+                </ul>
+                <form action="/product_order" method="post">
+                  <input type="hidden" name="product_name" value="7_gallon_keg">
+                  <input type="hidden" name="product_price" value="150">
+                  <button type="submit">Add to cart!</button>
+                </form>
+              </div><!-- closing panel bodydiv -->
+            </div>
+          </div><!-- closing medium keg div -->
 
-</div> -->
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3>15 Gallons</h3>
+              </div>
+              <div class="panel-body">
+                <img src="/img/fifteen.png" alt="fifteen gallon keg">
+                <ul>
+                  <li>$200</li>
+                  <li>Estimated Serving Size: 600 16 oz.</li>
+                </ul>
+                <form action="/product_order" method="post">
+                  <input type="hidden" name="product_name" value="15_gallon_keg">
+                  <input type="hidden" name="product_price" value="200">
+                  <button type="submit">Add to cart!</button>
+                </form>
 
-<div class="row">
-<!-- div for small keg -->
-  <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>Baby keg</h3>
-      </div>
-      <div class="panel-body">
-        <img src="" alt="">
-        <ul>
-          <li>$100</li>
-          <li>Estimated Serving Size: 200 16 oz.</li>
-        </ul>
-        <form action="/product_order" method="post">
-          <input type="hidden" name="product_name" value="15_gallon_keg">
-          <input type="hidden" name="product_price" value="100">
-          <button type="submit">Add to cart!</button>
-        </form>
-      </div><!-- closing panel bodydiv -->
-    </div>
-  </div><!-- closing small keg div -->
+              </div><!-- closing panel bodydiv -->
+            </div>
+          </div><!-- closing large keg div -->
+        </div><!-- closing row div -->
 
-  <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>Momma Keg</h3>
-      </div>
-      <div class="panel-body">
-        <img src="" alt="">
-        <ul>
-          <li>$150</li>
-          <li>Estimated Serving Size: 400 16 oz.</li>
-        </ul>
-        <form action="/product_order" method="post">
-          <input type="hidden" name="product_name" value="30_gallon_keg">
-          <input type="hidden" name="product_price" value="150">
-          <button type="submit">Add to cart!</button>
-        </form>
-      </div><!-- closing panel bodydiv -->
-    </div>
-  </div><!-- closing medium keg div -->
-
-  <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>Big Daddy Keg</h3>
-      </div>
-      <div class="panel-body">
-        <img src="" alt="">
-        <ul>
-          <li>$200</li>
-          <li>Estimated Serving Size: 600 16 oz.</li>
-        </ul>
-        <form action="/product_order" method="post">
-          <input type="hidden" name="product_name" value="60_gallon_keg">
-          <input type="hidden" name="product_price" value="200">
-          <button type="submit">Add to cart!</button>
-        </form>
-
-      </div><!-- closing panel bodydiv -->
-    </div>
-  </div><!-- closing large keg div -->
-</div><!-- closing row div -->
 
 
       {% if products is not empty %}
@@ -85,8 +82,7 @@
 
 
 
-      </div><!-- closing for container -->
-
-
+    </div><!-- closing for well -->
+    </div><!-- closing for container -->
   </body>
 </html>

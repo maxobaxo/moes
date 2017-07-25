@@ -1,0 +1,26 @@
+.product img {
+  border-radius: 50%;
+  max-width: 80%;
+}
+
+
+.product {
+  overflow: hidden;
+  text-align: center;
+  background-color: #D0E8DA;
+  color: white;
+}
+
+.panel-body {
+  background-color: #D0E8DA;
+  border: hidden;
+}
+
+.panel {
+  border: #D0E8DA;
+}
+
+
+.panel-heading {
+  background-color: #2F855E;
+}
