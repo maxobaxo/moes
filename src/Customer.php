@@ -268,7 +268,6 @@ class Customer
     function loginCheck()
     {
         $login = $this->login;
-        var_dump($login);
         $password = $this->password;
         $customers = Customer::getAll();
         $result = false;
