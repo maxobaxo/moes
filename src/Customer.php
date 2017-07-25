@@ -265,6 +265,30 @@ class Customer
 
     }
 
+    function loginCheck()
+    {
+        $login = $this->login;
+        var_dump($login);
+        $password = $this->password;
+        $customers = Customer::getAll();
+        $result = false;
+        foreach($customers as $customer)
+        {
+            if($customer->login == $login)
+            {
+                if($customer->password == $password)
+                {
+                    $result = Customer::find($customer->getID());
+                    return $result;
+                }
+            }
+        }
+        if ($result == false)
+        {
+            return false;
+        }
+    }
+
 
 
 }

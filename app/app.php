@@ -73,5 +73,23 @@
         return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning));
     });
 
+    $app->post("/login", function() use ($app) {
+        $contact = 'steve';
+        $business = 'steve';
+        $address = 'steve';
+        $phone = 'steve';
+        $email = 'steve';
+        $login = $_POST['existing_login'];
+        $password = $_POST['existing_password'];
+        $login_customer = new Customer($contact, $business, $address, $phone, $email, $login, $password);
+        $current_user = $login_customer->loginCheck();
+        $warning = false;
+        if ($current_user == false)
+        {
+            $warning = "Login failed; login/password combination incorrect";
+        }
+        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning));
+    });
+
     return $app
 ?>
