@@ -19,12 +19,12 @@ body {
     font-size: 2rem;
 }
 
-body, h5, h6 {
+body {
     font-family: 'Open Sans Condensed', sans-serif;
     font-weight: 300;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Crushed', sans-serif;
     font-weight: 500;
     color: #42A4C5;
@@ -32,7 +32,6 @@ h1, h2, h3, h4 {
 
 a {
     font-family: 'Syncopate', sans-serif;
-    font-size: 1.5rem;
     color: #ffffff;
 }
 
@@ -55,6 +54,12 @@ header {
     color: #ffffff;
 }
 
+nav a {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
 ul.navbar {
     margin: 0 0 0 0;
 }
@@ -65,4 +70,22 @@ li.nav-item {
 
 .container-main {
     margin-left: 5rem;
+}
+
+.sidebar h1, .sidebar h2 {
+    font-family: 'Crushed', sans-serif;
+    font-weight: 300;
+    color: #7EB49C;
+}
+
+.sidebar h3 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
+    color: #000000;
+}
+
+.sidebar h4, .sidebar h5, .sidebar h6 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
+    color: #7EB49C;
 }
