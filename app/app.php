@@ -30,8 +30,13 @@
 
     $app->get("/customers", function() use ($app) {
         $warning = false;
-        $current_user = new Customer(null, null, null, null, null, null, null);
-        $carts = $current_user->getCarts();
+        $current_user = false;
+        $carts = false;
+        // $current_user = new Customer(null, null, null, null, null, null, null);
+        // $current_user->save();
+        if (!(empty($current_user))) {
+            $carts = $current_user->getCarts();
+        }
         return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $carts));
     });
 
