@@ -1,0 +1,19 @@
+/*blue: #42A4C5
+sea green: #7EB49C;
+kelly green: #2F855E;
+pale sea green: #D0E8DA;
+white: #FFFFFF;
+*/
+
+.nav {
+    background-color: #42A4C5;
+    color: #ffffff;
+}
+
+a {
+    color: #ffffff;
+}
+
+a:hover {
+    color: #d8ecf3;
+}

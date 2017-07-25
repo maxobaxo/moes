@@ -1,8 +1,9 @@
 <?php
     date_default_timezone_set('America/Los_Angeles');
     require_once __DIR__."/../vendor/autoload.php";
-    // require_once __DIR__."/../src/Cart.php";
     require_once __DIR__."/../src/Customer.php";
+    require_once __DIR__."/../src/Cart.php";
+    require_once __DIR__."/../src/Product.php";
     $server = 'mysql:host=localhost:8889;dbname=moes';
     $username = 'root';
     $password = 'root';
@@ -22,7 +23,9 @@
     Request::enableHttpMethodParameterOverride();
 
     $app->get("/", function() use ($app) {
-        return $app['twig']->render('customer.html.twig', array('customers' => Customer::getAll()));
+        $cart = new Cart("2017-07-25", 723, number_format(55.50), 0);
+        $cart->save();
+        return $app['twig']->render('index.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
 
     $app->post("/add_customer", function() use ($app) {

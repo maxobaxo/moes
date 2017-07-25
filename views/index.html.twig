@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/styles.css" >
+        <title>Moe's Kombucha</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <header>
+                <img src="/img/banner.jpg" class="img-responsive" alt="Moe's Kombucha Logo">
+                <!-- banner & logo -->
+                <nav class="nav">
+                    <ul class="list-inline">
+                        <li><a href="#">About</a></li>
+                        <li><a href="/store">Store</a></li>
+                        <li><a href="#">Locations</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="/customers">Customers</a></li>
+                    </ul>
+                </nav>
+            </header>
+        <div class="row">
+            <div class="container-main">
+                <div class="main col-md-9">
+                    <!-- main content will go here -->
+                    <!-- login & register forms will go here on their respective pages -->
+                </div>
+                <div class="sidebar col-md-3">
+                    {% if cart is not empty %}
+                        <h2>Your Cart</h2>
+                        <h3>Order Number: {{ cart.getOrderNumber }}</h3>
+                        {% for product in cart_products %}
+                            <h4><span class="product-name">{{ product.getName }}</span><span class="product-price">{{ product.getPrice }}</span></h4>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+      </div>
+      <footer>
+
+      </footer>
+
+    </div>
+  </body>
+</html>
