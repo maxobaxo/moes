@@ -62,5 +62,17 @@
         return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_customer));
     });
 
+    $app->get("/product_order", function() use ($app) {
+        return $app['twig']->render('store.html.twig', array('product' => $product));
+    });
+
+    $app->post("/product_order", function() use ($app) {
+        $name = $_POST['product_name'];
+        $price = $_POST['product_price'];
+        $product = new Product($name, $price);
+        $product->save();
+        return $app['twig']->render('store.html.twig', array('product' => $product));
+    });
+
     return $app
 ?>
