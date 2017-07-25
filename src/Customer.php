@@ -69,7 +69,7 @@ class Customer
         $this->email = $new_email;
     }
 
-    function getId()
+    function getID()
     {
         return $this->id;
     }
@@ -135,7 +135,7 @@ class Customer
 
     function updateContact($new_contact)
     {
-        $executed = $GLOBALS['DB']->exec("UPDATE customers SET contact = '{$new_contact}' WHERE id = {$this->getId()};");
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET contact = '{$new_contact}' WHERE id = {$this->getID()};");
         if ($executed) {
             $this->setContact($new_contact);
             return true;
@@ -146,7 +146,7 @@ class Customer
 
     function updateBusiness($new_business)
     {
-        $executed = $GLOBALS['DB']->exec("UPDATE customers SET business = '{$new_business}' WHERE id = {$this->getId()};");
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET business = '{$new_business}' WHERE id = {$this->getID()};");
         if ($executed) {
             $this->setBusiness($new_business);
             return true;
@@ -157,7 +157,7 @@ class Customer
 
     function updateAddress($new_address)
     {
-        $executed = $GLOBALS['DB']->exec("UPDATE customers SET address = '{$new_address}' WHERE id = {$this->getId()};");
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET address = '{$new_address}' WHERE id = {$this->getID()};");
         if ($executed) {
             $this->setAddress($new_address);
             return true;
@@ -168,7 +168,7 @@ class Customer
 
     function updatePhone($new_phone)
     {
-        $executed = $GLOBALS['DB']->exec("UPDATE customers SET phone = '{$new_phone}' WHERE id = {$this->getId()};");
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET phone = '{$new_phone}' WHERE id = {$this->getID()};");
         if ($executed) {
             $this->setPhone($new_phone);
             return true;
@@ -179,7 +179,7 @@ class Customer
 
     function updateEmail($new_email)
     {
-        $executed = $GLOBALS['DB']->exec("UPDATE customers SET email = '{$new_email}' WHERE id = {$this->getId()};");
+        $executed = $GLOBALS['DB']->exec("UPDATE customers SET email = '{$new_email}' WHERE id = {$this->getID()};");
         if ($executed) {
             $this->setEmail($new_email);
             return true;
@@ -188,14 +188,41 @@ class Customer
         }
     }
 
+    function getCarts()
+    {
+        $returned_carts = $GLOBALS['DB']->query("SELECT carts.* FROM customers JOIN customers_carts ON (customers_carts.customer_id = customers.id) JOIN carts ON (carts.id = customers_carts.cart_id) WHERE customers.id = {$this->getID()};");
+        $carts = array();
+        foreach ($returned_carts as $cart) {
+            $order_date = $cart['order_date'];
+            $order_number = $cart['order_number'];
+            $order_cost = $cart['order_cost'];
+            $autoship = $cart['autoship'];
+            $id = $cart['id'];
+            $new_cart = new Cart($order_date, $order_number, $order_cost, $autoship, $id);
+            array_push($carts, $new_cart);
+        }
+        return $carts;
+    }
+
+    function addCart($cart)
+    {
+        $vardumpvariable = "INSERT INTO customers_carts (customer_id, cart_id) VALUES ({$this->getID()}, {$cart->getID()});";
+        $executed = $GLOBALS['DB']->exec("INSERT INTO customers_carts (customer_id, cart_id) VALUES ({$this->getID()}, {$cart->getID()});");
+        var_dump($vardumpvariable);
+        if ($executed) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     function delete()
     {
-        $executed = $GLOBALS['DB']->exec("DELETE FROM customers WHERE id = {$this->getId()};");
+        $executed = $GLOBALS['DB']->exec("DELETE FROM customers WHERE id = {$this->getID()};");
         if (!$executed) {
             return false;
         // } else {
-        //     $GLOBALS['DB']->exec("DELETE FROM  WHERE store_id = {$this->getId()};");
+        //     $GLOBALS['DB']->exec("DELETE FROM  WHERE store_id = {$this->getID()};");
         //     if (!$executed) {
         //         return false;
         //     } else {
