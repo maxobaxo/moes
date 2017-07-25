@@ -1,7 +1,8 @@
 <?php
     date_default_timezone_set('America/Los_Angeles');
     require_once __DIR__."/../vendor/autoload.php";
-    // require_once __DIR__."/../src/Cart.php";
+    require_once __DIR__."/../src/Cart.php";
+    require_once __DIR__."/../src/Product.php";
     require_once __DIR__."/../src/Customer.php";
     $server = 'mysql:host=localhost:8889;dbname=moes';
     $username = 'root';
@@ -62,17 +63,17 @@
         return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_customer));
     });
 
-    // $app->get("/product_order", function() use ($app) {
-    //     return $app['twig']->render('store.html.twig', array('product' => $product));
-    // });
-    //
-    // $app->post("/product_order", function() use ($app) {
-    //     $name = $_POST['product_name'];
-    //     $price = $_POST['product_price'];
-    //     $product = new Product($name, $price);
-    //     $product->save();
-    //     return $app['twig']->render('store.html.twig', array('product' => $product));
-    // });
+    $app->get("/product_order", function() use ($app) {
+        return $app['twig']->render('store.html.twig', array('products' => Product::getAll()));
+    });
+
+    $app->post("/product_order", function() use ($app) {
+        $name = $_POST['product_name'];
+        $price = $_POST['product_price'];
+        $product = new Product($name, $price);
+        $product->save();
+        return $app['twig']->render('store.html.twig', array('products' => Product::getAll(), 'product' => $product));
+    });
 
     return $app
 ?>

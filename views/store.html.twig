@@ -28,7 +28,11 @@
         <button type="submit">Submit!</button>
       </form>
 
-      <!-- {{ product.getPrice }} -->
+      {% if products is not empty %}
+        {% for product in products %}
+        {{ product.getPrice }}
+        {% endfor %}
+      {% endif %}
 
 
 
