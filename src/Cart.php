@@ -5,6 +5,7 @@
         private $order_number;
         private $order_cost;
         private $autoship;
+        private $confirmation;
         private $id;
 
         function __construct($order_date, $order_number, $order_cost, $autoship = 0, $id = null)
@@ -14,6 +15,7 @@
             $this->order_cost = $order_cost;
             $this->autoship = $autoship;
             $this->id = $id;
+            $this->confirmation = 0;
         }
 
         function getOrderDate()
@@ -217,5 +219,19 @@
             return $products;
         }
 
+        function confirmOrder()
+        {
+            $this->confirmation = 1;
+        }
+
+        function getConfirmation()
+        {
+            return $this->confirmation;
+        }
+
+        function setConfirmation($confirm)
+        {
+            $this->confirmation = $confirm;
+        }
     }
 ?>

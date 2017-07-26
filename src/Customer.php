@@ -1,4 +1,5 @@
 <?php
+    require_once 'src/Cart.php';
 
 class Customer
 {
@@ -231,8 +232,10 @@ class Customer
             $order_number = $cart['order_number'];
             $order_cost = $cart['order_cost'];
             $autoship = $cart['autoship'];
+            $confirm = $cart['confirmation'];
             $id = $cart['id'];
             $new_cart = new Cart($order_date, $order_number, $order_cost, $autoship, $id);
+            $new_cart->setConfirmation($confirm);
             array_push($carts, $new_cart);
         }
         return $carts;
