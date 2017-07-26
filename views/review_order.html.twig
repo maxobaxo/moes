@@ -25,7 +25,7 @@
             <div class="outside-container">
                 <div class="row">
                     <div class="container-main">
-                        <div class="main col-md-9">
+                        <div class="main col-md-9 invoice">
                             <!-- main content will go here -->
                             <!-- login & register forms will go here on their respective pages -->
                             <h2>Invoice</h2>
@@ -48,46 +48,45 @@
                                     </address>
                                 </div>
                             </div> -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title"><strong>Order summary</strong></h3>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-condensed">
-                                            <thead>
-                                                <tr>
-                                                    <td><strong>Item</strong></td>
-                                                    <td class="text-center"><strong>Price</strong></td>
-                                                    <!-- <td class="text-center"><strong>Quantity</strong></td> -->
-                                                    <td class="text-right"><strong>Totals</strong></td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% if cart_products is not empty %}
-                                                {% for product in cart_products %}
+                            <div class="panel-container">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><strong>Order Summary</strong></h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-condensed">
+                                                <thead>
                                                     <tr>
-                        						        <td>{{ product.getName }}</td>
-                        						        <td class="text-center">{{ product.getPrice }}</td>
-                        						        <!-- <td class="text-center">3</td> -->
-                        						        <td class="text-right">{{ product.getPrice }}</td>
-                        					        </tr>
-                                                    {% endfor %}
-                                                    {% endif %}
-                                                    <tr>
-                        								<td class="thick-line"></td>
-                        								<td class="thick-line"></td>
-                        								<td class="thick-line text-center"><strong>Subtotal</strong></td>
-                        								<td class="thick-line text-right"> {{ cart.getOrderCost }}</td>
-                        							</tr>
-                        							<tr>
-                        								<td class="no-line"></td>
-                        								<td class="no-line"></td>
-                        								<td class="no-line text-center"><strong>Total</strong></td>
-                        								<td class="no-line text-right">{{ cart.getOrderCost }}</td>
-                        							</tr>
-                            				</tbody>
-                                        </table>
+                                                        <td><strong>Item</strong></td>
+                                                        <td></td>
+                                                        <td><strong>Price</strong></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% if cart_products is not empty %}
+                                                    {% for product in cart_products %}
+                                                        <tr>
+                            						        <td>{{ product.getName }}</td>
+                                                            <td></td>
+                            						        <td>{{ product.getPrice }}</td>
+                            						        <!-- <td class="text-center">3</td> -->
+                            					        </tr>
+                                                        {% endfor %}
+                                                        {% endif %}
+                                                        <tr>
+                                                            <td class="thick-line"></td>
+                            								<td class="thick-line"><strong>Subtotal</strong></td>
+                            								<td class="thick-line"> {{ cart.getOrderCost }}</td>
+                            							</tr>
+                            							<tr>
+                                                            <td class="no-line"></td>
+                            								<td><strong>Total</strong></td>
+                            								<td>{{ cart.getOrderCost }}</td>
+                            							</tr>
+                                				</tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
