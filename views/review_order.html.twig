@@ -7,85 +7,159 @@
         <title>Moe's Kombucha</title>
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
+            <header>
+                <img src="/img/banner.jpg" class="img-responsive" alt="Moe's Kombucha Logo">
+                <!-- banner & logo -->
+                <nav class="nav container-fluid">
+                    <ul class="list-inline navbar">
+                        <li class="nav-item"><a href="#">About</a></li>
+                        <li class="nav-item"><a href="/store">Store</a></li>
+                        <li class="nav-item"><a href="#">Locations</a></li>
+                        <li class="nav-item"><a href="#">Contact</a></li>
+                        <li class="nav-item"><a href="#customer_modal" data-toggle="modal">Customers</a></li>
+                    </ul>
+                </nav>
+            </header>
+
             <div class="outside-container">
-                <div class="invoice-title">
-                    <h2>Invoice</h2><h3 class="pull-right">Order #</h3>
-                </div>
-                <hr>
-                <!-- <div class="row">
-                    <div class="col-xs-6">
-                        <address>
-                            <strong>Billed to:</strong><br>
-                            {*{customer.getBusiness}}<br>
-                            {*{customer.getBusiness}}<br>
-                        </address>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <address>
-                            <strong>Ship to:</strong><br>
-                            {*{customer.getBusiness}}<br>
-                            {*{ customer.getBusiness}}<br>
-                        </address>
-                    </div>
-                </div> -->
                 <div class="row">
-                    <div class="col-xs-6 text-right">
-                        <address>
-                            {{ cart.getOrderDate }}
-                        </address>
+                    <div class="container-main">
+                        <div class="main col-md-9">
+                            <!-- main content will go here -->
+                            <!-- login & register forms will go here on their respective pages -->
+                            <h2>Invoice</h2>
+                            <h3>Order #: {{ cart.getID }}</h3>
+                            <h3>Order Date: {{ cart.getOrderDate }}</h3>
+                            <hr>
+                            <!-- <div class="row">
+                                <div class="col-xs-6">
+                                    <address>
+                                        <strong>Billed to:</strong><br>
+                                        {*{customer.getBusiness}}<br>
+                                        {*{customer.getBusiness}}<br>
+                                    </address>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    <address>
+                                        <strong>Ship to:</strong><br>
+                                        {*{customer.getBusiness}}<br>
+                                        {*{ customer.getBusiness}}<br>
+                                    </address>
+                                </div>
+                            </div> -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><strong>Order summary</strong></h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-condensed">
+                                            <thead>
+                                                <tr>
+                                                    <td><strong>Item</strong></td>
+                                                    <td class="text-center"><strong>Price</strong></td>
+                                                    <!-- <td class="text-center"><strong>Quantity</strong></td> -->
+                                                    <td class="text-right"><strong>Totals</strong></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% if cart_products is not empty %}
+                                                {% for product in cart_products %}
+                                                    <tr>
+                        						        <td>{{ product.getName }}</td>
+                        						        <td class="text-center">{{ product.getPrice }}</td>
+                        						        <!-- <td class="text-center">3</td> -->
+                        						        <td class="text-right">{{ product.getPrice }}</td>
+                        					        </tr>
+                                                    {% endfor %}
+                                                    {% endif %}
+                                                    <tr>
+                        								<td class="thick-line"></td>
+                        								<td class="thick-line"></td>
+                        								<td class="thick-line text-center"><strong>Subtotal</strong></td>
+                        								<td class="thick-line text-right"> {{ cart.getOrderCost }}</td>
+                        							</tr>
+                        							<tr>
+                        								<td class="no-line"></td>
+                        								<td class="no-line"></td>
+                        								<td class="no-line text-center"><strong>Total</strong></td>
+                        								<td class="no-line text-right">{{ cart.getOrderCost }}</td>
+                        							</tr>
+                            				</tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="/clear_cart">Remove items from cart!</a>
+                        </div>
+
+
+
+                        <div class="sidebar col-md-3">
+                            {% if cart is not empty %}
+                                <h1>Your Cart</h1>
+                                <h3>Order Number: {{ cart.getID }}</h3>
+                                {% for product in cart_products %}
+                                    <h4><span class="product-name">{{ product.getName }}</span><span class="product-price">{{ product.getPrice }}</span></h4>
+                                {% endfor %}
+                                <h2>Your Total: ${{ cart.getOrderCost }}</h2>
+                                <h3>
+                                    <form class="checkout" action="/review_order/{{ cart.getID }}" method="post">
+                                        <button type="submit">Checkout</button>
+                                    </form>
+                                </h3>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><strong>Order summary</strong></h3>
+            <footer>
+                <div class="row">
+                    <div class="footer-container">
+                        <div class="col-md-3">
+                            <h4>This is an H4</h4>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <td><strong>Item</strong></td>
-                                            <td class="text-center"><strong>Price</strong></td>
-                                            <!-- <td class="text-center"><strong>Quantity</strong></td> -->
-                                            <td class="text-right"><strong>Totals</strong></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% if cart_products is not empty %}
-                                        {% for product in cart_products %}
-                                            <tr>
-                						        <td>{{ product.getName }}</td>
-                						        <td class="text-center">{{ product.getPrice }}</td>
-                						        <!-- <td class="text-center">3</td> -->
-                						        <td class="text-right">{{ product.getPrice }}</td>
-                					        </tr>
-                                            {% endfor %}
-                                            {% endif %}
-                                            <tr>
-                								<td class="thick-line"></td>
-                								<td class="thick-line"></td>
-                								<td class="thick-line text-center"><strong>Subtotal</strong></td>
-                								<td class="thick-line text-right"> {{ cart.getOrderCost }}</td>
-                							</tr>
-                							<tr>
-                								<td class="no-line"></td>
-                								<td class="no-line"></td>
-                								<td class="no-line text-center"><strong>Total</strong></td>
-                								<td class="no-line text-right">{{ cart.getOrderCost }}</td>
-                							</tr>
-                    				</tbody>
-                                </table>
-                            </div>
+                        <div class="col-md-3">
+                            <h4>This is an H4</h4>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>This is an H4</h4>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>This is an H4</h4>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         </div>
                     </div>
                 </div>
-                <a href="/clear_cart">Remove items from cart!</a>
-            </div> <!-- row close -->
-        </div><!-- container close -->
+            </footer>
+
+            <!-- Modal -->
+            <div id="customer_modal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Create An Account or Login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="login" class="create-account" action="/register" method="post">
+                            <button type="submit" name="create-account">Create Account</button>
+                        </form>
+                        <form name="login" class="login" action="/login" method="post">
+                            <button type="submit" name="login">Create Account</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
