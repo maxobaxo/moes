@@ -343,7 +343,7 @@
             $this->assertEquals("Sneaks@sneaksy.snek", $test_customer->getEmail());
         }
 
-        function testGetCart()
+        function testGetCarts()
         {
             //Arrange
             $contact = "Bob";
