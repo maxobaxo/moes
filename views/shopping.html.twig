@@ -106,6 +106,12 @@
                                     <h4><span class="product-name">{{ product.getName }}</span><span class="product-price">{{ product.getPrice }}</span></h4>
                                 {% endfor %}
                                 <h2>Your Total: ${{ cart.getOrderCost }}</h2>
+                                <h3>
+                                    <form class="checkout" action="/review_order/{{ cart.getID }}" method="post">
+
+                                    </form>
+                                    <button type="submit"> Checkout </button>
+                                </h3>
                             {% endif %}
                         </div>
                     </div>
