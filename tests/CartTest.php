@@ -401,4 +401,18 @@
             // Assert
             $this->assertEquals([$test_product, $test_product2], $test_cart->getProducts());
         }
+
+        function testConfirmOrder()
+        {
+            $order_date = date('Y-m-d', time());
+            $order_number = 541;
+            $order_cost = number_format(81.00, 2);
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart->save();
+
+            $test_cart->confirmOrder();
+
+            $this->assertEquals($test_cart->getConfirmation(), 1);
+        }
     }
