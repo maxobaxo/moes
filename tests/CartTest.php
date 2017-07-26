@@ -253,6 +253,62 @@
             $this->assertEquals($new_order_date, $result);
         }
 
+        function testUpdateOrderCost()
+        {
+            // Arrange
+            $order_date = date('Y-m-d', time());
+            $order_cost = number_format(0.00, 2);
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
+            $test_cart->save();
+
+            $name = "55 lb. keg";
+            $price = number_format(49.50, 2);
+            $test_product = new Product($name, $price);
+            $test_product->save();
+
+            $name2 = "45 lb. keg";
+            $price2 = number_format(39.50, 2);
+            $test_product2 = new Product($name2, $price2);
+            $test_product2->save();
+
+            // Act
+            $test_cart->addProduct($test_product);
+            $test_cart->addProduct($test_product2);
+            $result = $test_cart->updateOrderCost($test_cart->calculateOrderCost());
+
+            // Assert
+            $this->assertEquals(true, $result);
+        }
+
+        function testCalculateOrderCost()
+        {
+            // Arrange
+            $order_date = date('Y-m-d', time());
+            $order_cost = number_format(0.00, 2);
+            $autoship = 0;
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
+            $test_cart->save();
+
+            $name = "55 lb. keg";
+            $price = number_format(49.50, 2);
+            $test_product = new Product($name, $price);
+            $test_product->save();
+
+            $name2 = "45 lb. keg";
+            $price2 = number_format(39.50, 2);
+            $test_product2 = new Product($name2, $price2);
+            $test_product2->save();
+
+            // Act
+            $test_cart->addProduct($test_product);
+            $test_cart->addProduct($test_product2);
+            $result = $test_cart->calculateOrderCost();
+
+            // Assert
+            $this->assertEquals(number_format(89.00, 2), $result);
+        }
+
         function testFindByID()
         {
             // Arrange

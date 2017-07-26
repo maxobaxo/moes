@@ -6,7 +6,7 @@
         private $autoship;
         private $id;
 
-        function __construct($order_date, $order_cost, $autoship = 0, $id = null)
+        function __construct($order_date, $order_cost = 0, $autoship = 0, $id = null)
         {
             $this->order_date = $order_date;
             $this->order_cost = $order_cost;
@@ -111,6 +111,28 @@
             $executed = $GLOBALS['DB']->exec("UPDATE carts SET order_date = {$new_order_date} WHERE id = {$this->getID()};");
             if ($executed) {
                 $this->setOrderDate($new_order_date);
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function calculateOrderCost()
+        {
+            $new_order_cost = number_format(0.00, 2);
+            $cart_products = $this->getProducts();
+            foreach($cart_products as $product) {
+                $new_order_cost += $product->getPrice();
+            }
+            return $new_order_cost;
+        }
+
+        function updateOrderCost($new_order_cost)
+        {
+            $new_order_cost = $this->calculateOrderCost();
+            $executed = $GLOBALS['DB']->exec("UPDATE carts SET order_cost = {$new_order_cost} WHERE id = {$this->getID()};");
+            if ($executed) {
+                $this->setOrderCost($new_order_cost);
                 return true;
             } else {
                 return false;
