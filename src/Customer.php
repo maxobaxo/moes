@@ -230,8 +230,10 @@ class Customer
             $order_date = $cart['order_date'];
             $order_cost = $cart['order_cost'];
             $autoship = $cart['autoship'];
+            $confirm = $cart['confirmation'];
             $id = $cart['id'];
             $new_cart = new Cart($order_date, $order_cost, $autoship, $id);
+            $new_cart->setConfirmation($confirm);
             array_push($carts, $new_cart);
         }
         return $carts;
