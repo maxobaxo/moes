@@ -84,7 +84,12 @@
                         </div>
                     </div>
                 </div>
-                <a href="/clear_cart">Remove items from cart!</a>
+                <form action="/" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="cart_id" value="{{ cart.getID }}">
+                    <button type="submit">Remove your order</button>
+                </form>
+                <!-- <a href="/clear_cart">Remove items from cart!</a> -->
             </div> <!-- row close -->
         </div><!-- container close -->
     </body>

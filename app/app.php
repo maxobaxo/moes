@@ -140,11 +140,15 @@
         return $app['twig']->render('review_order.html.twig', array('carts' => Cart::getAll()));
     });
 
-    $app->post("/clear_cart", function($id) use ($app) {
-        $cart = Cart::find($id);
-        Cart::delete();
-        return $app['twig']->render('store.html.twig');
+    $app->delete("/", function() use ($app) {
+        $old_cart = Cart::findByID($_POST['cart_id']);
+        $old_cart->delete();
+        
+        $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
+        $cart->save();
+        return $app['twig']->render('index.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
+
 
 
     return $app
