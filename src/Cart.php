@@ -119,7 +119,7 @@
 
         function calculateOrderCost()
         {
-            $new_order_cost = number_format(0.00, 2);
+            $new_order_cost = $this->getOrderCost();
             $cart_products = $this->getProducts();
             foreach($cart_products as $product) {
                 $new_order_cost += $product->getPrice();
