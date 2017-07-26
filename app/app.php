@@ -124,11 +124,11 @@
     });
 
     $app->post("/review_order/{id}", function($id) use ($app) {
-        $customer = Customer::find($id);
-        $cart = Cart::find($id);
-        return $app['twig']->render('review_order.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts(), 'customer' => $customer));
+        // $customer = Customer::find($id);
+        $cart = Cart::findByID($id);
+        return $app['twig']->render('review_order.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
-    
+
     $app->get("/cart/{id}/edit", function($id) use ($app) {
         $cart = Cart::find($id);
         return $app['twig']->render('review_order.html.twig', array('cart' => $cart));
