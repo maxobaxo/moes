@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Crushed|Nixie+One|Open+Sans+Condensed:300,300i,700|PT+Sans+Narrow:400,700|Raleway:300,400,700|Syncopate:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Moe's Kombucha</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="outside-container">
+        <div class="invoice-title">
+          <h2>Invoice</h2><h3 class="pull-right">Order #</h3>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-6">
+            <address>
+            <strong>Billed to:</strong><br>
+              {{customer.getBusiness}}<br>
+              {{ customer.getBusiness}}<br>
+            </address>
+          </div>
+          <div class="col-xs-6 text-right">
+            <address>
+              <strong>Ship to:</strong><br>
+              {{customer.getBusiness}}<br>
+              {{ customer.getBusiness}}<br>
+            </address>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 text-right">
+            <address>
+              {{ cart.getOrderDate }}
+            </address>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>Order summary</strong></h3>
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                        <td><strong>Item</strong></td>
+                        <td class="text-center"><strong>Price</strong></td>
+                        <!-- <td class="text-center"><strong>Quantity</strong></td> -->
+                        <td class="text-right"><strong>Totals</strong></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if cart_products is not empty %}
+                    {% for product in cart_products %}
+                      <tr>
+          							<td>{{ product.getName }}</td>
+      								<td class="text-center">{{ product.getPrice }}</td>
+      								<!-- <td class="text-center">3</td> -->
+      								<td class="text-right">{{ product.getPrice }}</td>
+      							  </tr>
+                  {% endfor %}
+                  {% endif %}
+                  <tr>
+    								<td class="thick-line"></td>
+    								<td class="thick-line"></td>
+    								<td class="thick-line text-center"><strong>Subtotal</strong></td>
+    								<td class="thick-line text-right"> {{ cart.getOrderCost }}</td>
+    							</tr>
+    							<tr>
+    								<td class="no-line"></td>
+    								<td class="no-line"></td>
+    								<td class="no-line text-center"><strong>Total</strong></td>
+    								<td class="no-line text-right">{{ cart.getOrderCost }}</td>
+    							</tr>
+    						</tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+        <a href="/clear_cart">Remove items from cart!</a>
+      </div> <!-- row close -->
+    </div><!-- container close -->
+  </body>
+  </html>
