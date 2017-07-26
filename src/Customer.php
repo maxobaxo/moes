@@ -1,5 +1,4 @@
 <?php
-    require_once 'src/Cart.php';
 
 class Customer
 {

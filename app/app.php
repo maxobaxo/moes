@@ -28,25 +28,25 @@
         return $app['twig']->render('index.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
 
-    // $app->post("/register", function() use ($app) {
-    //     $warning = false;
-    //     $current_user = false;
-    //     $carts = false;
-    //     if (!(empty($current_user))) {
-    //         $carts = $current_user->getCarts();
-    //     }
-    //     return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $carts));
-    // });
+    $app->post("/register", function() use ($app) {
+        $warning = false;
+        $current_user = false;
+        $carts = false;
+        if (!(empty($current_user))) {
+            $carts = $current_user->getCarts();
+        }
+        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $carts));
+    });
 
-    // $app->get("/login", function() use ($app) {
-    //     $warning = false;
-    //     $current_user = false;
-    //     $carts = false;
-    //     if (!(empty($current_user))) {
-    //         $carts = $current_user->getCarts();
-    //     }
-    //     return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $carts));
-    // });
+    $app->get("/login", function() use ($app) {
+        $warning = false;
+        $current_user = false;
+        $carts = false;
+        if (!(empty($current_user))) {
+            $carts = $current_user->getCarts();
+        }
+        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $carts));
+    });
 
     $app->post("/customers", function() use ($app) {
         $contact = $_POST['customer_contact'];
@@ -106,28 +106,28 @@
         return $app['twig']->render('store.html.twig', array('products' => Product::getAll(), 'product' => $product));
     });
 
-    $app->post("/review_order/{id}", function($id) use ($app) {
-        $customer = Customer::find($id);
-        $cart = Cart::find($id);
-        return $app['twig']->render('review_order.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts(), 'customer' => $customer));
-    });
-
-    $app->get("/cart/{id}/edit", function($id) use ($app) {
-        $cart = Cart::find($id);
-        return $app['twig']->render('review_order.html.twig', array('cart' => $cart));
-    });
-
-    $app->patch("/cart/{id}", function($id) use ($app) {
-        $cart = Cart::find($id);
-        $cart->update($cart);
-        return $app['twig']->render('review_order.html.twig', array('carts' => Cart::getAll()));
-    });
-
-    $app->post("/clear_cart", function($id) use ($app) {
-        $cart = Cart::find($id);
-        Cart::delete();
-        return $app['twig']->render('store.html.twig');
-    });
+    // $app->post("/review_order/{id}", function($id) use ($app) {
+    //     $customer = Customer::find($id);
+    //     $cart = Cart::find($id);
+    //     return $app['twig']->render('review_order.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts(), 'customer' => $customer));
+    // });
+    //
+    // $app->get("/cart/{id}/edit", function($id) use ($app) {
+    //     $cart = Cart::find($id);
+    //     return $app['twig']->render('review_order.html.twig', array('cart' => $cart));
+    // });
+    //
+    // $app->patch("/cart/{id}", function($id) use ($app) {
+    //     $cart = Cart::find($id);
+    //     $cart->update($cart);
+    //     return $app['twig']->render('review_order.html.twig', array('carts' => Cart::getAll()));
+    // });
+    //
+    // $app->post("/clear_cart", function($id) use ($app) {
+    //     $cart = Cart::find($id);
+    //     Cart::delete();
+    //     return $app['twig']->render('store.html.twig');
+    // });
 
     return $app
 ?>
