@@ -28,10 +28,11 @@
                         <div class="main col-md-9 invoice">
                             <!-- main content will go here -->
                             <!-- login & register forms will go here on their respective pages -->
-                            <h2>Invoice</h2>
-                            <h3>Order #: {{ cart.getID }}</h3>
-                            <h3>Order Date: {{ cart.getOrderDate }}</h3>
-                            <hr>
+                            <div class="invoice-header">
+                                <h2>Invoice</h2>
+                                <h3>Order #: {{ cart.getID }}</h3>
+                                <h3>Order Date: {{ cart.getOrderDate }}</h3>
+                            </div>
                             <!-- <div class="row">
                                 <div class="col-xs-6">
                                     <address>
@@ -70,7 +71,6 @@
                             						        <td>{{ product.getName }}</td>
                                                             <td></td>
                             						        <td>{{ product.getPrice }}</td>
-                            						        <!-- <td class="text-center">3</td> -->
                             					        </tr>
                                                         {% endfor %}
                                                         {% endif %}

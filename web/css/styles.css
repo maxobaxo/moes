@@ -132,10 +132,14 @@ footer a {
 
 .panel-container {
     text-align: center;
+    margin: auto;
 }
 
-.panel {
+.invoice-header, .panel {
     width: 85%;
+    max-width: 65%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .table > thead > tr > .no-line {
