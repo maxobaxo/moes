@@ -119,7 +119,7 @@
 
         function calculateOrderCost()
         {
-            $new_order_cost = $this->getOrderCost();
+            $new_order_cost = number_format(0.00, 2);
             $cart_products = $this->getProducts();
             foreach($cart_products as $product) {
                 $new_order_cost += $product->getPrice();
@@ -179,8 +179,6 @@
 
         function addProduct($product)
         {
-            $sql = "INSERT INTO carts_products (cart_id, product_id) VALUES ({$this->getID()}, {$product->getID()});";
-            var_dump($sql);
             $executed = $GLOBALS['DB']->exec("INSERT INTO carts_products (cart_id, product_id) VALUES ({$this->getID()}, {$product->getID()});");
             if ($executed) {
                 return true;
