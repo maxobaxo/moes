@@ -2,15 +2,13 @@
     class Cart
     {
         private $order_date;
-        private $order_number;
         private $order_cost;
         private $autoship;
         private $id;
 
-        function __construct($order_date, $order_number, $order_cost, $autoship = 0, $id = null)
+        function __construct($order_date, $order_cost, $autoship = 0, $id = null)
         {
             $this->order_date = $order_date;
-            $this->order_number = $order_number;
             $this->order_cost = $order_cost;
             $this->autoship = $autoship;
             $this->id = $id;
@@ -24,16 +22,6 @@
         function setOrderDate($new_order_date)
         {
             $this->order_date = $new_order_date;
-        }
-
-        function getOrderNumber()
-        {
-            return $this->order_number;
-        }
-
-        function setOrderNumber($new_order_number)
-        {
-            $this->order_number = $new_order_number;
         }
 
         function getOrderCost()
@@ -63,7 +51,7 @@
 
         function save()
         {
-            $executed = $GLOBALS['DB']->exec("INSERT INTO carts (order_date, order_number, order_cost, autoship) VALUES ('{$this->getOrderDate()}', {$this->getOrderNumber()}, {$this->getOrderCost()}, {$this->getAutoship()});");
+            $executed = $GLOBALS['DB']->exec("INSERT INTO carts (order_date, order_cost, autoship) VALUES ('{$this->getOrderDate()}', {$this->getOrderCost()}, {$this->getAutoship()});");
             if ($executed) {
                 $this->id = $GLOBALS['DB']->lastInsertId();
                 return true;
@@ -88,11 +76,10 @@
             $returned_carts = $GLOBALS['DB']->query("SELECT * FROM carts;");
             foreach ($returned_carts as $cart) {
                 $order_date = $cart['order_date'];
-                $order_number = $cart['order_number'];
                 $order_cost = $cart['order_cost'];
                 $autoship = $cart['autoship'];
                 $id = $cart['id'];
-                $new_cart = new Cart($order_date, $order_number, $order_cost, $autoship, $id);
+                $new_cart = new Cart($order_date, $order_cost, $autoship, $id);
                 array_push($carts, $new_cart);
             }
             return $carts;
@@ -139,12 +126,11 @@
 
             foreach ($returned_carts as $cart) {
                 $order_date = $cart['order_date'];
-                $order_number = $cart['order_number'];
                 $order_cost = $cart['order_cost'];
                 $autoship = $cart['autoship'];
                 $id = $cart['id'];
                 if ($id == $search_id) {
-                    $found_cart = new Cart($order_date, $order_number, $order_cost, $autoship, $id);
+                    $found_cart = new Cart($order_date, $order_cost, $autoship, $id);
                 }
             }
             return $found_cart;
@@ -159,32 +145,11 @@
 
             foreach ($returned_carts as $cart) {
                 $order_date = $cart['order_date'];
-                $order_number = $cart['order_number'];
                 $order_cost = $cart['order_cost'];
                 $autoship = $cart['autoship'];
                 $id = $cart['id'];
                 if ($order_date == $search_order_date) {
-                    $found_cart = new Cart($order_date, $order_number, $order_cost, $autoship, $id);
-                }
-            }
-            return $found_cart;
-        }
-
-        static function findByOrderNumber($search_order_number)
-        {
-            $found_cart = null;
-            $returned_carts = $GLOBALS['DB']->prepare("SELECT * FROM carts WHERE order_number = :order_number;");
-            $returned_carts->bindPARAM(':order_number', $search_order_number, PDO::PARAM_STR);
-            $returned_carts->execute();
-
-            foreach ($returned_carts as $cart) {
-                $order_date = $cart['order_date'];
-                $order_number = $cart['order_number'];
-                $order_cost = $cart['order_cost'];
-                $autoship = $cart['autoship'];
-                $id = $cart['id'];
-                if ($order_number == $search_order_number) {
-                    $found_cart = new Cart($order_date, $order_number, $order_cost, $autoship, $id);
+                    $found_cart = new Cart($order_date, $order_cost, $autoship, $id);
                 }
             }
             return $found_cart;

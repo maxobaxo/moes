@@ -23,10 +23,9 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = 55.50;
             $autoship = 1;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
 
             // Act
             $result = $test_cart->getOrderDate();
@@ -39,10 +38,9 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = 55.50;
             $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
 
             $new_order_date = '2017-06-01';
 
@@ -54,50 +52,13 @@
             $this->assertEquals($new_order_date, $result);
         }
 
-        function testGetOrderNumber()
-        {
-            // Arrange
-            $order_date = date('Y-m-d', time());
-            $order_number = 543;
-            $order_cost = 55.50;
-            $autoship = 1;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
-
-            // Act
-            $result = $test_cart->getOrderNumber();
-
-            // Assert
-            $this->assertEquals($order_number, $result);
-        }
-
-        function testSetOrderNumber()
-        {
-            // Arrange
-            $order_date = date('Y-m-d', time());
-            $order_number = 543;
-            $order_cost = 55.50;
-            $autoship = 1;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
-
-            $new_order_number = 544;
-
-            // Act
-            $test_cart->setOrderNumber($new_order_number);
-            $result = $test_cart->getOrderNumber();
-
-            // Assert
-            $this->assertEquals($new_order_number, $result);
-
-        }
-
         function testGetOrderCost()
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = 55.50;
             $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
 
             // Act
             $result = $test_cart->getOrderCost();
@@ -109,10 +70,9 @@
         function testSetOrderCost()
         {
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = 55.50;
             $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
 
             $new_order_cost = 95.50;
 
@@ -128,10 +88,9 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = 55.50;
             $autoship = 1;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
 
             // Act
             $result = $test_cart->getAutoship();
@@ -144,10 +103,9 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = 55.50;
             $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
 
             $new_autoship = 1;
 
@@ -163,10 +121,9 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = 55.50;
             $autoship = 1;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
             $test_cart->save();
 
             // Act
@@ -180,10 +137,9 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = 55.50;
             $autoship = 1;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
 
             // Act
             $executed = $test_cart->save();
@@ -196,17 +152,15 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = 55.50;
             $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
             $test_cart->save();
 
             $order_date2 = date('Y-m-d', time());
-            $order_number2 = 543;
             $order_cost2 = 55.50;
             $autoship2 = 1;
-            $test_cart2 = new Cart($order_date2, $order_number2, $order_cost2, $autoship2);
+            $test_cart2 = new Cart($order_date2, $order_cost2, $autoship2);
             $test_cart2->save();
 
             // Act
@@ -221,17 +175,15 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = 55.50;
             $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
             $test_cart->save();
 
             $order_date2 = date('Y-m-d', time());
-            $order_number2 = 543;
             $order_cost2 = 55.50;
             $autoship2 = 1;
-            $test_cart2 = new Cart($order_date2, $order_number2, $order_cost2, $autoship2);
+            $test_cart2 = new Cart($order_date2, $order_cost2, $autoship2);
             $test_cart2->save();
 
             // Act
@@ -245,17 +197,15 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = number_format(55.50, 2);
             $autoship = 1;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
             $test_cart->save();
 
             $order_date2 = date('Y-m-d', time());
-            $order_number2 = 544;
             $order_cost2 = number_format(55777.50, 2);
             $autoship2 = 0;
-            $test_cart2 = new Cart($order_date2, $order_number2, $order_cost2, $autoship2);
+            $test_cart2 = new Cart($order_date2, $order_cost2, $autoship2);
             $test_cart2->save();
 
             // Act
@@ -269,10 +219,9 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = number_format(55.50, 2);
             $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
             $test_cart->save();
 
             $new_autoship = 1;
@@ -289,10 +238,9 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = number_format(55.50, 2);
             $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
             $test_cart->save();
 
             $new_order_date = '2017-05-02';
@@ -309,17 +257,15 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = number_format(55.50, 2);
             $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
             $test_cart->save();
 
             $order_date2 = date('Y-m-d', time());
-            $order_number2 = 544;
             $order_cost2 = number_format(55777.50, 2);
             $autoship2 = 0;
-            $test_cart2 = new Cart($order_date2, $order_number2, $order_cost2, $autoship2);
+            $test_cart2 = new Cart($order_date2, $order_cost2, $autoship2);
             $test_cart2->save();
 
             // Act
@@ -333,17 +279,15 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = number_format(55.50, 2);
             $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
             $test_cart->save();
 
             $order_date2 = date('Y-m-d', time());
-            $order_number2 = 544;
             $order_cost2 = number_format(55777.50, 2);
             $autoship2 = 0;
-            $test_cart2 = new Cart($order_date2, $order_number2, $order_cost2, $autoship2);
+            $test_cart2 = new Cart($order_date2, $order_cost2, $autoship2);
             $test_cart2->save();
 
             // Act
@@ -353,38 +297,13 @@
             $this->assertEquals($test_cart, $result);
         }
 
-        function testFindByOrderNumber()
-        {
-            // Arrange
-            $order_date = date('Y-m-d', time());
-            $order_number = 543;
-            $order_cost = number_format(55.50, 2);
-            $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
-            $test_cart->save();
-
-            $order_date2 = date('Y-m-d', time());
-            $order_number2 = 544;
-            $order_cost2 = number_format(55777.50, 2);
-            $autoship2 = 0;
-            $test_cart2 = new Cart($order_date2, $order_number2, $order_cost2, $autoship2);
-            $test_cart2->save();
-
-            // Act
-            $result = Cart::findByOrderNumber($test_cart->getOrderNumber());
-
-            // Assert
-            $this->assertEquals($test_cart, $result);
-        }
-
         function testAddProduct()
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = number_format(89.00, 2);
             $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
             $test_cart->save();
 
             $name2 = "45 lb. keg";
@@ -403,10 +322,9 @@
         {
             // Arrange
             $order_date = date('Y-m-d', time());
-            $order_number = 543;
             $order_cost = number_format(89.00, 2);
             $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number, $order_cost, $autoship);
+            $test_cart = new Cart($order_date, $order_cost, $autoship);
             $test_cart->save();
 
             $name = "55 lb. keg";

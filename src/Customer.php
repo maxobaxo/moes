@@ -228,11 +228,10 @@ class Customer
         $carts = array();
         foreach ($returned_carts as $cart) {
             $order_date = $cart['order_date'];
-            $order_number = $cart['order_number'];
             $order_cost = $cart['order_cost'];
             $autoship = $cart['autoship'];
             $id = $cart['id'];
-            $new_cart = new Cart($order_date, $order_number, $order_cost, $autoship, $id);
+            $new_cart = new Cart($order_date, $order_cost, $autoship, $id);
             array_push($carts, $new_cart);
         }
         return $carts;

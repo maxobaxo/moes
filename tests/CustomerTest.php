@@ -355,18 +355,16 @@
             $test_customer->save();
 
             $order_date = "2011-02-02";
-            $order_number = "12";
             $order_cost = "1.00";
             $autoship = 0;
-            $test_cart = new Cart($order_date, $order_number,
+            $test_cart = new Cart($order_date,
             $order_cost, $autoship);
             $test_cart->save();
 
             $order_date_2 = "2012-03-03";
-            $order_number_2 = "13";
             $order_cost_2 = "2.00";
             $autoship_2 = 0;
-            $test_cart_2 = new Cart($order_date_2, $order_number_2, $order_cost_2, $autoship_2);
+            $test_cart_2 = new Cart($order_date_2, $order_cost_2, $autoship_2);
             $test_cart_2->save();
 
             //Act
