@@ -94,27 +94,37 @@
         return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning));
     });
 
-    $app->get("/product_order", function() use ($app) {
+    $app->get("/start_order", function() use ($app) {
         return $app['twig']->render('store.html.twig', array('products' => Product::getAll()));
     });
 
-    $app->post("/product_order", function() use ($app) {
+    $app->post("/start_order", function() use ($app) {
         $name = $_POST['product_name'];
-        $price = $_POST['product_price'];
+        $price = (float)$_POST['product_price'];
         $product = new Product($name, $price);
         $product->save();
-        // var_dump($product);
         $new_cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
         $new_cart->save();
         $new_cart->addProduct($product);
-        // var_dump($product_added);
         $cart_total = $new_cart->calculateOrderCost();
-        // var_dump($cart_total);
         $new_cart->updateOrderCost($cart_total);
-        // var_dump($new_cart);
-        // var_dump($new_cart->getProducts());
-        return $app['twig']->render('index.html.twig', array('products' => Product::getAll(), 'product' => $product, 'cart' => $new_cart, 'cart_products' => $new_cart->getProducts()));
+        return $app['twig']->render('shopping.html.twig', array('products' => Product::getAll(), 'product' => $product, 'cart' => $new_cart, 'cart_products' => $new_cart->getProducts()));
     });
+
+
+    $app->patch("/add_to_cart/{id}", function($id) use ($app) {
+        $name = $_POST['product_name'];
+        $price = (float)$_POST['product_price'];
+        $product = new Product($name, $price);
+        $product->save();
+        $cart = Cart::findByID($id);
+        $cart->addProduct($product);
+        $cart_total = $cart->calculateOrderCost();
+        $cart->updateOrderCost($cart_total);
+        return $app['twig']->render('shopping.html.twig', array('products' => Product::getAll(), 'product' => $product, 'cart' => $cart, 'cart_products' => $cart->getProducts()));
+    });
+
+
 
     return $app
 ?>
