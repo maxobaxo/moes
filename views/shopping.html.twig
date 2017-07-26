@@ -43,7 +43,8 @@
                                                     <li class="price-text">$100</li>
                                                     <li class="price-text">Estimated Serving Size: 200 16 oz.</li>
                                                 </ul>
-                                                <form action="/start_order" method="post">
+                                                <form action="/add_to_cart/{{ cart.getID }}" method="post">
+                                                    <input type="hidden" name="_method" value="patch">
                                                     <input type="hidden" name="product_name" value="5_gallon_keg">
                                                     <input type="hidden" name="product_price" value="100">
                                                     <button type="submit" class="submit-btns">Add to cart!</button>
@@ -63,7 +64,8 @@
                                                     <li class="price-text">$150</li>
                                                     <li class="price-text">Estimated Serving Size: 400 16 oz.</li>
                                                 </ul>
-                                                <form action="/start_order" method="post">
+                                                <form action="/add_to_cart/{{ cart.getID }}" method="post">
+                                                    <input type="hidden" name="_method" value="patch">
                                                     <input type="hidden" name="product_name" value="7_gallon_keg">
                                                     <input type="hidden" name="product_price" value="150">
                                                     <button type="submit" class="submit-btns">Add to cart!</button>
@@ -83,7 +85,8 @@
                                                  <li class="price-text">$200</li>
                                                  <li class="price-text">Estimated Serving Size: 600 16 oz.</li>
                                                 </ul>
-                                                <form action="/start_order" method="post">
+                                                <form action="/add_to_cart/{{ cart.getID }}" method="post">
+                                                    <input type="hidden" name="_method" value="patch">
                                                     <input type="hidden" name="product_name" value="15_gallon_keg">
                                                     <input type="hidden" name="product_price" value="200">
                                                     <button type="submit" class="submit-btns">Add to cart!</button>
