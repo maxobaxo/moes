@@ -23,7 +23,7 @@
     Request::enableHttpMethodParameterOverride();
 
     $app->get("/", function() use ($app) {
-        $cart = new Cart("2017-07-25", 723, number_format(55.50, 2), 0);
+        $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
         $cart->save();
         return $app['twig']->render('index.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
@@ -103,7 +103,17 @@
         $price = $_POST['product_price'];
         $product = new Product($name, $price);
         $product->save();
-        return $app['twig']->render('store.html.twig', array('products' => Product::getAll(), 'product' => $product));
+        // var_dump($product);
+        $new_cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
+        $new_cart->save();
+        $new_cart->addProduct($product);
+        // var_dump($product_added);
+        $cart_total = $new_cart->calculateOrderCost();
+        // var_dump($cart_total);
+        $new_cart->updateOrderCost($cart_total);
+        // var_dump($new_cart);
+        // var_dump($new_cart->getProducts());
+        return $app['twig']->render('index.html.twig', array('products' => Product::getAll(), 'product' => $product, 'cart' => $new_cart, 'cart_products' => $new_cart->getProducts()));
     });
 
     return $app

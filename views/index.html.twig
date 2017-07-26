@@ -98,7 +98,7 @@
                         <div class="sidebar col-md-3">
                             {% if cart is not empty %}
                                 <h1>Your Cart</h1>
-                                <h3>Order Number: {{ cart.getOrderNumber }}</h3>
+                                <h3>Order Number: {{ cart.getID }}</h3>
                                 {% for product in cart_products %}
                                     <h4><span class="product-name">{{ product.getName }}</span><span class="product-price">{{ product.getPrice }}</span></h4>
                                 {% endfor %}

@@ -179,6 +179,8 @@
 
         function addProduct($product)
         {
+            $sql = "INSERT INTO carts_products (cart_id, product_id) VALUES ({$this->getID()}, {$product->getID()});";
+            var_dump($sql);
             $executed = $GLOBALS['DB']->exec("INSERT INTO carts_products (cart_id, product_id) VALUES ({$this->getID()}, {$product->getID()});");
             if ($executed) {
                 return true;
@@ -193,7 +195,9 @@
             JOIN carts_products ON (carts_products.cart_id = carts.id)
             JOIN products ON (products.id = carts_products.product_id)
             WHERE carts.id = {$this->getID()};");
+            // var_dump($returned_products);
             $products = array();
+            // var_dump($products);
             foreach ($returned_products as $product) {
                 $name = $product['name'];
                 $price = $product['price'];
