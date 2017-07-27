@@ -14,10 +14,10 @@
                 <nav class="nav container-fluid">
                     <ul class="list-inline navbar">
                         <li class="nav-item"><a href="#">About</a></li>
-                        <li class="nav-item"><a href="/store">Store</a></li>
+                        <li class="nav-item"><a href="/">Store</a></li>
                         <li class="nav-item"><a href="#">Locations</a></li>
                         <li class="nav-item"><a href="#">Contact</a></li>
-                        <li class="nav-item"><a href="#customer_modal" data-toggle="modal">Customers</a></li>
+                        <li class="nav-item"><a href="/login">Customers</a></li>
                     </ul>
                 </nav>
             </header>
@@ -118,8 +118,6 @@
                             <a href="/clear_cart">Remove items from cart!</a>  <!-- what's happening with thus? -->
                         </div>
 
-
-
                         <div class="sidebar col-md-3">
                             {% if cart.getProducts is not empty %}
                                 <h1>Your Cart</h1>
@@ -128,11 +126,6 @@
                                     <h4><span class="product-name">{{ product.getName }}</span><span class="product-price">{{ product.getPrice }}</span></h4>
                                 {% endfor %}
                                 <h2>Your Total: ${{ cart.getOrderCost }}</h2>
-                                <h3>
-                                    <form class="checkout" action="/review_order/{{ cart.getID }}" method="post">
-                                        <button type="submit">Checkout</button>
-                                    </form>
-                                </h3>
                             {% else %}
                                 <h4>No products in cart. Start Shopping!</h4>
                             {% endif %}

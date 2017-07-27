@@ -45,7 +45,9 @@
         if (!(empty($current_user))) {
             $carts = $current_user->getCarts();
         }
-        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $carts));
+        $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
+        $cart->save();
+        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $carts, 'cart' => $cart));
     });
 
     $app->post("/customers", function() use ($app) {
@@ -68,7 +70,7 @@
         $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
         $cart->save();
 
-        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $new_customer->getCarts(), 'cart_products' => $cart->getProducts()));
+        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
 
     $app->patch("/user_edit/{id}", function($id) use ($app) {
@@ -94,7 +96,9 @@
             $current_user->updateEmail($_POST['email_update']);
         }
         $warning = false;
-        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning));
+        $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
+        $cart->save();
+        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'cart' => $cart));
     });
 
     $app->get("/start_order", function() use ($app) {
