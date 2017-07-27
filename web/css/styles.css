@@ -38,6 +38,7 @@ a {
 a:hover {
     font-family: 'Syncopate', sans-serif;
     color: #d8ecf3;
+    text-decoration: none;
 }
 
 button {
@@ -64,6 +65,7 @@ header {
     height: 3rem;
     background-color: #42A4C5;
     color: #ffffff;
+    text-align: center;
 }
 
 nav a {
@@ -72,12 +74,25 @@ nav a {
     color: #ffffff;
 }
 
-ul.navbar {
+/*ul.navbar {
     margin: 0 0 0 0;
 }
 
 li.nav-item {
     margin: 0 17.5rem 0 4.5rem;
+}*/
+
+ul.navbar {
+    /*flex-direction: row;
+    flex-wrap: nowrap;*/
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+
+li.nav-item {
+    flex-grow: 2;
+    flex-basis: auto;
+    margin: 0 4% 0 4%;
 }
 
 .outside-container {
