@@ -147,7 +147,7 @@ footer a {
     margin: auto;
 }
 
-.panel .panel-heading {
+.panel-info > .panel-heading {
     background-color: #ebf6f9;
 }
 
