@@ -176,6 +176,13 @@
         return $app['twig']->render('review_order.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
 
+    $app->get("/locations", function() use ($app) {
+        $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
+        $cart->save();
+        return $app['twig']->render('locations.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
+    });
+
+
 
 
     return $app
