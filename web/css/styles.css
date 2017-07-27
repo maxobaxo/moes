@@ -158,6 +158,12 @@ footer a {
     margin-right: auto;
 }
 
+.invoice-header > h3 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
+    color: #000000;
+}
+
 .table > thead > tr > .no-line {
     border-bottom: none;
 }
