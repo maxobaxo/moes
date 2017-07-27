@@ -1,4 +1,4 @@
-/*blue: #42A4C5
+/*blue: #42A4C5 - shade: #2a7189 - tint: #76bdd5;
 sea green: #7EB49C;
 kelly green: #2F855E;
 pale sea green: #D0E8DA;
@@ -38,6 +38,18 @@ a {
 a:hover {
     font-family: 'Syncopate', sans-serif;
     color: #d8ecf3;
+}
+
+button {
+    background-color: #42A4C5;
+    color: #ffffff;
+    border: 2px solid #42A4C5;
+}
+
+button:hover {
+    background-color: #76bdd5;
+    color: #ffffff;
+    border: 2px solid #76bdd5;
 }
 
 .container-fluid {
