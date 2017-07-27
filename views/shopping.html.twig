@@ -46,7 +46,7 @@
                                                 </ul>
                                                 <form action="/add_to_cart/{{ cart.getID }}" method="post">
                                                     <input type="hidden" name="_method" value="patch">
-                                                    <input type="hidden" name="product_name" value="5_gallon_keg">
+                                                    <input type="hidden" name="product_name" value="5 Gallon Keg">
                                                     <input type="hidden" name="product_price" value="100">
                                                     <button type="submit" class="submit-btns">Add to cart!</button>
                                                 </form>
@@ -57,7 +57,7 @@
                                     <div class="col-md-3">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <h3>Seven Gallons</h3>
+                                                <h3>7 Gallons</h3>
                                             </div>
                                             <div class="panel-body">
                                                 <img src="/img/seven.png" class="img-responsive" alt="seven gallon keg">
@@ -67,7 +67,7 @@
                                                 </ul>
                                                 <form action="/add_to_cart/{{ cart.getID }}" method="post">
                                                     <input type="hidden" name="_method" value="patch">
-                                                    <input type="hidden" name="product_name" value="7_gallon_keg">
+                                                    <input type="hidden" name="product_name" value="7 Gallon Keg">
                                                     <input type="hidden" name="product_price" value="150">
                                                     <button type="submit" class="submit-btns">Add to cart!</button>
                                                 </form>
@@ -88,7 +88,7 @@
                                                 </ul>
                                                 <form action="/add_to_cart/{{ cart.getID }}" method="post">
                                                     <input type="hidden" name="_method" value="patch">
-                                                    <input type="hidden" name="product_name" value="15_gallon_keg">
+                                                    <input type="hidden" name="product_name" value="15 Gallon Keg">
                                                     <input type="hidden" name="product_price" value="200">
                                                     <button type="submit" class="submit-btns">Add to cart!</button>
                                                 </form>
@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="panel-body">
                                         {% for product in cart_products %}
-                                            <h4><span class="product-name">{{ product.getName }}</span><span class="product-price">{{ product.getPrice }}</span></h4>
+                                            <h4><span class="product-name">{{ product.getName }} </span><span class="product-price">{{ product.getPrice }}</span></h4>
                                         {% endfor %}
                                     </div>
                                     <div class="panel-footer">
