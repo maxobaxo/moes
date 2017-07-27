@@ -29,7 +29,7 @@
                             <!-- main content will go here -->
                             <!-- login & register forms will go here on their respective pages -->
                             <div class="invoice-header">
-                                <h2>Invoice</h2>
+                                <h1>Invoice</h1>
                                 <h3>Order #: {{ cart.getID }}</h3>
                                 <h3>Order Date: {{ cart.getOrderDate }}</h3>
                             </div>
@@ -99,7 +99,7 @@
                                     <form action="/" method="post">
                                         <input type="hidden" name="_method" value="delete">
                                         <input type="hidden" name="cart_id" value="{{ cart.getID }}">
-                                        <button type="submit">Delete Order</button>
+                                        <button type="submit">Cancel Order</button>
                                     </form>
 
                                     <form action="/order_confirmed" method="post">
