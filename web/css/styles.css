@@ -1,7 +1,7 @@
 /*blue: #42A4C5 - shade: #2a7189 - tint: #76bdd5 - paler tint: #ebf6f9;
 sea green: #7EB49C;
 kelly green: #2F855E;
-pale sea green: #D0E8DA;
+pale sea green: #D0E8DA - tint: #eef7f2;
 white: #FFFFFF;
 */
 
@@ -180,9 +180,21 @@ td {
 
 /*sidebar*/
 .panel-success > .panel-heading {
-    background-color: #D0E8DA;
+    background-color: #eef7f2;
 }
 
-.panel-title {
+.panel-success > .panel-footer {
+    background-color: #eef7f2;
+}
+
+button.checkout {
+    background-color: #7EB49C;
     color: #ffffff;
+    border: 2px solid #7EB49C;
+}
+
+button.checkout:hover {
+    background-color: #D0E8DA;
+    color: #ffffff;
+    border: 2px solid #D0E8DA;
 }
