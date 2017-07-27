@@ -73,7 +73,7 @@
 
                     <div class="sidebar col-md-3">
                         <div class="panel panel-success">
-                            {% if cart is not empty %}
+                            {% if cart.getProducts is not empty %}
                                 <div class="panel-heading">
                                     <h1>Your Cart</h1>
                                     <h3>Order Number: {{ cart.getID }}</h3>
@@ -91,6 +91,8 @@
                                         </form>
                                     </h3>
                                 </div>
+                            {% else %}
+                                <h4>No products in cart. Start Shopping!</h4>
                             {% endif %}
                         </div>
                     </div>

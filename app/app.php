@@ -28,6 +28,11 @@
         return $app['twig']->render('index.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
 
+    $app->post('/', function() use ($app) {
+        $cart = Cart::findByID($_POST['cart_id']);
+        return $app['twig']->render('index.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
+    });
+
     $app->post("/register", function() use ($app) {
         $warning = false;
         $current_user = false;
@@ -45,7 +50,9 @@
         if (!(empty($current_user))) {
             $carts = $current_user->getCarts();
         }
-        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $carts));
+        $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
+        $cart->save();
+        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $carts, 'cart' => $cart));
     });
 
     $app->post("/customers", function() use ($app) {
@@ -65,7 +72,10 @@
         }
         $current_user = Customer::find($new_customer->getID());
 
-        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning));
+        $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
+        $cart->save();
+
+        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
 
     $app->patch("/user_edit/{id}", function($id) use ($app) {
@@ -91,7 +101,9 @@
             $current_user->updateEmail($_POST['email_update']);
         }
         $warning = false;
-        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning));
+        $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
+        $cart->save();
+        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'cart' => $cart));
     });
 
     $app->get("/start_order", function() use ($app) {
@@ -140,11 +152,23 @@
         return $app['twig']->render('review_order.html.twig', array('carts' => Cart::getAll()));
     });
 
-    $app->post("/clear_cart", function($id) use ($app) {
-        $cart = Cart::find($id);
-        Cart::delete();
-        return $app['twig']->render('store.html.twig');
+    $app->delete("/", function() use ($app) {
+        $old_cart = Cart::findByID($_POST['cart_id']);
+        $old_cart->delete();
+
+        $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
+        $cart->save();
+        return $app['twig']->render('index.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
+
+    $app->post("/order_confirmed", function () use ($app) {
+        $cart = Cart::findByID($_POST['cart_id']);
+
+        $cart->setConfirmation(1);
+
+        return $app['twig']->render('review_order.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
+    });
+
 
 
     return $app

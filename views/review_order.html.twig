@@ -28,51 +28,56 @@
                         <div class="main col-md-9 invoice">
                             <!-- main content will go here -->
                             <!-- login & register forms will go here on their respective pages -->
-                            <div class="invoice-header">
-                                <h1>Invoice</h1>
-                                <h3>Order #: {{ cart.getID }}</h3>
-                                <h3>Order Date: {{ cart.getOrderDate }}</h3>
-                            </div>
-                            <!-- <div class="row">
-                                <div class="col-xs-6">
-                                    <address>
-                                        <strong>Billed to:</strong><br>
-                                        {*{customer.getBusiness}}<br>
-                                        {*{customer.getBusiness}}<br>
-                                    </address>
+                            {% if cart.getConfirmation == 1 %}
+                                <h2>Order Confirmed!</h2>
+                                <a href="/"><h3>Continue Shopping</h3></a>
+                            {% else %}
+                                <div class="invoice-header">
+                                    <h1>Invoice</h1>
+                                    <h3>Order #: {{ cart.getID }}</h3>
+                                    <h3>Order Date: {{ cart.getOrderDate }}</h3>
                                 </div>
-                                <div class="col-xs-6 text-right">
-                                    <address>
-                                        <strong>Ship to:</strong><br>
-                                        {*{customer.getBusiness}}<br>
-                                        {*{ customer.getBusiness}}<br>
-                                    </address>
-                                </div>
-                            </div> -->
-                            <div class="panel-container" id="invoice">
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title"><strong>Order Summary</strong></h3>
+                                <!-- <div class="row">
+                                    <div class="col-xs-6">
+                                        <address>
+                                            <strong>Billed to:</strong><br>
+                                            {*{customer.getBusiness}}<br>
+                                            {*{customer.getBusiness}}<br>
+                                        </address>
                                     </div>
-                                    <div class="panel-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-condensed">
-                                                <thead>
-                                                    <tr>
-                                                        <td><strong>Item</strong></td>
-                                                        <td></td>
-                                                        <td><strong>Price</strong></td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {% if cart_products is not empty %}
-                                                    {% for product in cart_products %}
+                                    <div class="col-xs-6 text-right">
+                                        <address>
+                                            <strong>Ship to:</strong><br>
+                                            {*{customer.getBusiness}}<br>
+                                            {*{ customer.getBusiness}}<br>
+                                        </address>
+                                    </div>
+                                </div> -->
+
+                                <div class="panel-container" id="invoice">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><strong>Order Summary</strong></h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-condensed">
+                                                    <thead>
                                                         <tr>
-                            						        <td>{{ product.getName }}</td>
+                                                            <td><strong>Item</strong></td>
                                                             <td></td>
-                            						        <td>{{ product.getPrice }}</td>
-                            					        </tr>
-                                                        {% endfor %}
+                                                            <td><strong>Price</strong></td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% if cart_products is not empty %}
+                                                            {% for product in cart_products %}
+                                                                <tr>
+                                    						        <td>{{ product.getName }}</td>
+                                                                    <td></td>
+                                    						        <td>{{ product.getPrice }}</td>
+                                    					        </tr>
+                                                            {% endfor %}
                                                         {% endif %}
                                                         <tr>
                                                             <td class="thick-line"></td>
@@ -84,38 +89,42 @@
                             								<td><strong>Total</strong></td>
                             								<td>{{ cart.getOrderCost }}</td>
                             							</tr>
-                                				</tbody>
-                                            </table>
+                                    				</tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="confirmation">
-                                {% if cart.getConfirmation == 1 %}
-                                    <h2>Order Confirmed!</h2>
-                                    <a href="/"><h3>Continue Shopping</h3></a>
-                                {% else %}
+                                <div class="confirmation">
+                                    {% if cart.getConfirmation == 1 %}
+                                        <h2>Order Confirmed!</h2>
+                                        <a href="/"><h3>Continue Shopping</h3></a>
+                                    {% else %}
                                     <form action="/" method="post">
-                                        <input type="hidden" name="_method" value="delete">
                                         <input type="hidden" name="cart_id" value="{{ cart.getID }}">
-                                        <button type="submit">Cancel Order</button>
+                                        <button type="submit">Keep Shopping</button>
                                     </form>
+                                        <form action="/" method="post">
+                                            <input type="hidden" name="_method" value="delete">
+                                            <input type="hidden" name="cart_id" value="{{ cart.getID }}">
+                                            <button type="submit">Cancel Order</button>
+                                        </form>
 
-                                    <form action="/order_confirmed" method="post">
-                                        <input type="hidden" name="cart_id" value="{{ cart.getID }}">
-                                        <button type="submit">Confirm Purchase</button>
-                                    </form>
-                                    <!-- <a href="/clear_cart">Remove items from cart!</a> -->
-                                {% endif %}
-                            </div>
-
+                                        <form action="/order_confirmed" method="post">
+                                            <input type="hidden" name="cart_id" value="{{ cart.getID }}">
+                                            <button type="submit">Confirm Purchase</button>
+                                        </form>
+                                        <!-- <a href="/clear_cart">Remove items from cart!</a> -->
+                                    {% endif %}
+                                </div>
+                            {% endif %}
                             <a href="/clear_cart">Remove items from cart!</a>  <!-- what's happening with thus? -->
                         </div>
 
                         <div class="sidebar col-md-3">
                             <div class="panel panel-success">
-                                {% if cart is not empty %}
+                                {% if cart.getProducts is not empty %}
                                     <div class="panel-heading">
                                         <h1>Your Cart</h1>
                                         <h3>Order Number: {{ cart.getID }}</h3>
@@ -127,12 +136,9 @@
                                     </div>
                                     <div class="panel-footer">
                                         <h2>Your Total: ${{ cart.getOrderCost }}</h2>
-                                        <h3>
-                                            <form class="checkout" action="/review_order/{{ cart.getID }}" method="post">
-                                                <button class="checkout" type="submit">Checkout</button>
-                                            </form>
-                                        </h3>
                                     </div>
+                                {% else %}
+                                    <h4>No products in cart. Start Shopping!</h4>
                                 {% endif %}
                             </div>
                         </div>
@@ -140,7 +146,6 @@
                     </div>
                 </div>
             </div>
-
             <footer>
                 <div class="row">
                     <div class="footer-container">
@@ -163,30 +168,6 @@
                     </div>
                 </div>
             </footer>
-
-            <div id="customer_modal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Create An Account or Login</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form name="login" class="create-account" action="/register" method="post">
-                                <button type="submit" name="create-account">Create Account</button>
-                            </form>
-                            <form name="login" class="login" action="/login" method="post">
-                                <button type="submit" name="login">Create Account</button>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div><!-- container-fluid close -->
+        </div>
     </body>
 </html>
