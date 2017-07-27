@@ -156,6 +156,12 @@ footer a {
 }
 
 
+/*store page styling*/
+.product h1 {
+    margin-left: 6.5rem;
+    margin-bottom: 2.5rem;
+}
+
 /*invoice styling*/
 .panel-container {
     text-align: center;
