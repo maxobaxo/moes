@@ -233,3 +233,15 @@ td label {
     font-weight: 500;
     color: #42A4C5;
 }
+
+
+/*contact page styling*/
+a#contact {
+    font-family: 'Syncopate', sans-serif;
+    color: #42A4C5;
+}
+
+a#contact:hover {
+    font-family: 'Syncopate', sans-serif;
+    color: #ffffff;
+}
