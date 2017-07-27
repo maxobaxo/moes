@@ -91,7 +91,26 @@
                                 </div>
                             </div>
 
-                            <a href="/clear_cart">Remove items from cart!</a>
+                            <div class="confirmation">
+                                {% if cart.getConfirmation == 1 %}
+                                    <h2>Order Confirmed!</h2>
+                                    <a href="/"><h3>Continue Shopping</h3></a>
+                                {% else %}
+                                    <form action="/" method="post">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <input type="hidden" name="cart_id" value="{{ cart.getID }}">
+                                        <button type="submit">Delete Order</button>
+                                    </form>
+
+                                    <form action="/order_confirmed" method="post">
+                                        <input type="hidden" name="cart_id" value="{{ cart.getID }}">
+                                        <button type="submit">Confirm Purchase</button>
+                                    </form>
+                                    <!-- <a href="/clear_cart">Remove items from cart!</a> -->
+                                {% endif %}
+                            </div>
+
+                            <a href="/clear_cart">Remove items from cart!</a>  <!-- what's happening with thus? -->
                         </div>
 
 
@@ -113,25 +132,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="confirmation">
-                {% if cart.getConfirmation == 1 %}
-                    <h2>Order Confirmed!</h2>
-                    <a href="/"><h3>Continue Shopping</h3></a>
-                {% else %}
-                    <form action="/" method="post">
-                        <input type="hidden" name="_method" value="delete">
-                        <input type="hidden" name="cart_id" value="{{ cart.getID }}">
-                        <button type="submit">Remove your order</button>
-                    </form>
-
-                    <form action="/order_confirmed" method="post">
-                        <input type="hidden" name="cart_id" value="{{ cart.getID }}">
-                        <button type="submit">Confirm Purchase!</button>
-                    </form>
-                    <!-- <a href="/clear_cart">Remove items from cart!</a> -->
-                {% endif %}
             </div>
 
             <footer>
@@ -179,7 +179,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div><!-- container-fluid close -->
     </body>
 </html>

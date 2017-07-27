@@ -135,7 +135,7 @@ footer a {
     margin: auto;
 }
 
-.invoice-header, .panel {
+.invoice-header, .panel, .confirmation {
     width: 85%;
     max-width: 65%;
     margin-left: auto;
@@ -156,4 +156,8 @@ footer a {
 
 td {
     text-align: left;
+}
+
+.confirmation {
+    text-align: right;
 }
