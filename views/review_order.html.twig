@@ -7,102 +7,161 @@
         <title>Moe's Kombucha</title>
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
+            <header>
+                <img src="/img/banner_large.jpg" class="img-responsive" alt="Moe's Kombucha Logo">
+                <!-- banner & logo -->
+                <nav class="nav container-fluid">
+                    <ul class="list-inline navbar">
+                        <li class="nav-item"><a href="#">About</a></li>
+                        <li class="nav-item"><a href="/store">Store</a></li>
+                        <li class="nav-item"><a href="#">Locations</a></li>
+                        <li class="nav-item"><a href="#">Contact</a></li>
+                        <li class="nav-item"><a href="#customer_modal" data-toggle="modal">Customers</a></li>
+                    </ul>
+                </nav>
+            </header>
+
             <div class="outside-container">
-                <div class="invoice-title">
-                    <h2>Invoice</h2><h3 class="pull-right">Order #</h3>
-                </div>
-                <hr>
-                <!-- <div class="row">
-                    <div class="col-xs-6">
-                        <address>
-                            <strong>Billed to:</strong><br>
-                            {*{customer.getBusiness}}<br>
-                            {*{customer.getBusiness}}<br>
-                        </address>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <address>
-                            <strong>Ship to:</strong><br>
-                            {*{customer.getBusiness}}<br>
-                            {*{ customer.getBusiness}}<br>
-                        </address>
-                    </div>
-                </div> -->
                 <div class="row">
-                    <div class="col-xs-6 text-right">
-                        <address>
-                            {{ cart.getOrderDate }}
-                        </address>
+                    <div class="container-main">
+                        <div class="main col-md-9 invoice">
+                            <!-- main content will go here -->
+                            <!-- login & register forms will go here on their respective pages -->
+                            {% if cart.getConfirmation == 1 %}
+                                <h2>Order Confirmed!</h2>
+                                <a href="/"><h3>Continue Shopping</h3></a>
+                            {% else %}
+                                <div class="invoice-header">
+                                    <h1>Invoice</h1>
+                                    <h3>Order #: {{ cart.getID }}</h3>
+                                    <h3>Order Date: {{ cart.getOrderDate }}</h3>
+                                </div>
+                                <!-- <div class="row">
+                                    <div class="col-xs-6">
+                                        <address>
+                                            <strong>Billed to:</strong><br>
+                                            {*{customer.getBusiness}}<br>
+                                            {*{customer.getBusiness}}<br>
+                                        </address>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <address>
+                                            <strong>Ship to:</strong><br>
+                                            {*{customer.getBusiness}}<br>
+                                            {*{ customer.getBusiness}}<br>
+                                        </address>
+                                    </div>
+                                </div> -->
+
+                                <div class="panel-container">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><strong>Order Summary</strong></h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-condensed">
+                                                    <thead>
+                                                        <tr>
+                                                            <td><strong>Item</strong></td>
+                                                            <td></td>
+                                                            <td><strong>Price</strong></td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% if cart_products is not empty %}
+                                                            {% for product in cart_products %}
+                                                                <tr>
+                                    						        <td>{{ product.getName }}</td>
+                                                                    <td></td>
+                                    						        <td>{{ product.getPrice }}</td>
+                                    					        </tr>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        <tr>
+                                                            <td class="thick-line"></td>
+                            								<td class="thick-line"><strong>Subtotal</strong></td>
+                            								<td class="thick-line"> {{ cart.getOrderCost }}</td>
+                            							</tr>
+                            							<tr>
+                                                            <td class="no-line"></td>
+                            								<td><strong>Total</strong></td>
+                            								<td>{{ cart.getOrderCost }}</td>
+                            							</tr>
+                                    				</tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="confirmation">
+                                    {% if cart.getConfirmation == 1 %}
+                                        <h2>Order Confirmed!</h2>
+                                        <a href="/"><h3>Continue Shopping</h3></a>
+                                    {% else %}
+                                        <form action="/" method="post">
+                                            <input type="hidden" name="_method" value="delete">
+                                            <input type="hidden" name="cart_id" value="{{ cart.getID }}">
+                                            <button type="submit">Cancel Order</button>
+                                        </form>
+
+                                        <form action="/order_confirmed" method="post">
+                                            <input type="hidden" name="cart_id" value="{{ cart.getID }}">
+                                            <button type="submit">Confirm Purchase</button>
+                                        </form>
+                                        <!-- <a href="/clear_cart">Remove items from cart!</a> -->
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            <a href="/clear_cart">Remove items from cart!</a>  <!-- what's happening with thus? -->
+                        </div>
+
+
+
+                        <div class="sidebar col-md-3">
+                            {% if cart.getProducts is not empty %}
+                                <h1>Your Cart</h1>
+                                <h3>Order Number: {{ cart.getID }}</h3>
+                                {% for product in cart_products %}
+                                    <h4><span class="product-name">{{ product.getName }}</span><span class="product-price">{{ product.getPrice }}</span></h4>
+                                {% endfor %}
+                                <h2>Your Total: ${{ cart.getOrderCost }}</h2>
+                                <h3>
+                                    <form class="checkout" action="/review_order/{{ cart.getID }}" method="post">
+                                        <button type="submit">Checkout</button>
+                                    </form>
+                                </h3>
+                            {% else %}
+                                <h4>No products in cart. Start Shopping!</h4>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
-            {% if cart.getConfirmation == 1 %}
-                <h2>Order Confirmed!</h2>
-                <a href="/"><h3>Continue Shopping</h3></a>
-            {% else %}
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><strong>Order summary</strong></h3>
+            <footer>
+                <div class="row">
+                    <div class="footer-container">
+                        <div class="col-md-3">
+                            <h4>This is an H4</h4>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <td><strong>Item</strong></td>
-                                            <td class="text-center"><strong>Price</strong></td>
-                                            <!-- <td class="text-center"><strong>Quantity</strong></td> -->
-                                            <td class="text-right"><strong>Totals</strong></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% if cart_products is not empty %}
-                                        {% for product in cart_products %}
-                                            <tr>
-                						        <td>{{ product.getName }}</td>
-                						        <td class="text-center">{{ product.getPrice }}</td>
-                						        <!-- <td class="text-center">3</td> -->
-                						        <td class="text-right">{{ product.getPrice }}</td>
-                					        </tr>
-                                            {% endfor %}
-                                            {% endif %}
-                                            <tr>
-                								<td class="thick-line"></td>
-                								<td class="thick-line"></td>
-                								<td class="thick-line text-center"><strong>Subtotal</strong></td>
-                								<td class="thick-line text-right"> {{ cart.getOrderCost }}</td>
-                							</tr>
-                							<tr>
-                								<td class="no-line"></td>
-                								<td class="no-line"></td>
-                								<td class="no-line text-center"><strong>Total</strong></td>
-                								<td class="no-line text-right">{{ cart.getOrderCost }}</td>
-                							</tr>
-                    				</tbody>
-                                </table>
-                            </div>
+                        <div class="col-md-3">
+                            <h4>This is an H4</h4>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>This is an H4</h4>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>This is an H4</h4>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         </div>
                     </div>
                 </div>
-
-                <form action="/" method="post">
-                    <input type="hidden" name="_method" value="delete">
-                    <input type="hidden" name="cart_id" value="{{ cart.getID }}">
-                    <button type="submit">Remove your order</button>
-                </form>
-
-                <form action="/order_confirmed" method="post">
-                    <input type="hidden" name="cart_id" value="{{ cart.getID }}">
-                    <button type="submit">Confirm Purchase!</button>
-                </form>
-
-
-                <!-- <a href="/clear_cart">Remove items from cart!</a> -->
-            </div> <!-- row close -->
-            {% endif %}
-        </div><!-- container close -->
+            </footer>
+        </div>
     </body>
 </html>

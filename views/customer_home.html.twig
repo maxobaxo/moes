@@ -9,7 +9,7 @@
     <body>
         <div class="container-fluid">
             <header>
-                <img src="/img/banner.jpg" class="img-responsive" alt="Moe's Kombucha Logo">
+                <img src="/img/banner_large.jpg" class="img-responsive" alt="Moe's Kombucha Logo">
                 <!-- banner & logo -->
                 <nav class="nav container-fluid">
                     <ul class="list-inline navbar">
@@ -70,15 +70,21 @@
                         {% endif %}
                     </div>
                     <div class="sidebar col-md-3">
-                        {% for cart in carts %}
-                            {% if cart is not empty %}
-                                <h1>Your Cart</h1>
-                                {% for product in cart_products %}
-                                    <h4><span class="product-name">{{ product.getName }}</span><span class="product-price">{{ product.getPrice }}</span></h4>
-                                {% endfor %}
-                                <h2>Your Total: ${{ cart.getOrderCost }}</h2>
-                            {% endif %}
-                        {% endfor %}
+                        {% if cart.getProducts is not empty %}
+                            <h1>Your Cart</h1>
+                            <h3>Order Number: {{ cart.getID }}</h3>
+                            {% for product in cart_products %}
+                                <h4><span class="product-name">{{ product.getName }}</span><span class="product-price">{{ product.getPrice }}</span></h4>
+                            {% endfor %}
+                            <h2>Your Total: ${{ cart.getOrderCost }}</h2>
+                            <h3>
+                                <form class="checkout" action="/review_order/{{ cart.getID }}" method="post">
+                                    <button type="submit">Checkout</button>
+                                </form>
+                            </h3>
+                        {% else %}
+                            <h4>No products in cart. Start Shopping!</h4>
+                        {% endif %}
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-/*blue: #42A4C5
+/*blue: #42A4C5 - shade: #2a7189 - tint: #76bdd5 - paler tint: #ebf6f9;
 sea green: #7EB49C;
 kelly green: #2F855E;
 pale sea green: #D0E8DA;
@@ -38,6 +38,18 @@ a {
 a:hover {
     font-family: 'Syncopate', sans-serif;
     color: #d8ecf3;
+}
+
+button {
+    background-color: #42A4C5;
+    color: #ffffff;
+    border: 2px solid #42A4C5;
+}
+
+button:hover {
+    background-color: #76bdd5;
+    color: #ffffff;
+    border: 2px solid #76bdd5;
 }
 
 .container-fluid {
@@ -122,18 +134,46 @@ footer a {
 
 
 /*invoice styling*/
-.invoice-title h2, .invoice-title h3 {
+/*.invoice-title h2, .invoice-title h3 {
     display: inline-block;
+}*/
+
+.invoice {
+    /*margin-left: 5rem;*/
 }
 
-.table > tbody > tr > .no-line {
-    border-top: none;
+.panel-container {
+    text-align: center;
+    margin: auto;
+}
+
+.panel .panel-heading {
+    background-color: #ebf6f9;
+}
+
+.invoice-header, .panel, .confirmation {
+    width: 85%;
+    max-width: 65%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .table > thead > tr > .no-line {
     border-bottom: none;
 }
 
+.table > tbody > tr > .no-line {
+    border-top: none;
+}
+
 .table > tbody > tr > .thick-line {
     border-top: 2px solid;
+}
+
+td {
+    text-align: left;
+}
+
+.confirmation {
+    text-align: right;
 }
