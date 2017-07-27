@@ -101,7 +101,7 @@
                                         <h2>Order Confirmed!</h2>
                                         <a href="/"><h3>Continue Shopping</h3></a>
                                     {% else %}
-                                    <form action="/" method="post">
+                                    <form action="/continue_order" method="post">
                                         <input type="hidden" name="cart_id" value="{{ cart.getID }}">
                                         <button type="submit">Keep Shopping</button>
                                     </form>
