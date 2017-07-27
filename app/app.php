@@ -65,7 +65,10 @@
         }
         $current_user = Customer::find($new_customer->getID());
 
-        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning));
+        $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
+        $cart->save();
+
+        return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'carts' => $new_customer->getCarts(), 'cart_products' => $cart->getProducts()));
     });
 
     $app->patch("/user_edit/{id}", function($id) use ($app) {
