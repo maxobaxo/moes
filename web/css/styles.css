@@ -235,6 +235,17 @@ td label {
 }
 
 
+/*locations page styling*/
+a.locationLinks {
+    font-family: 'Syncopate', sans-serif;
+    color: #42A4C5;
+}
+
+a.locationLinks:hover {
+    font-family: 'Syncopate', sans-serif;
+    color: #76bdd5;
+}
+
 /*contact page styling*/
 a#contact {
     font-family: 'Syncopate', sans-serif;
@@ -243,5 +254,5 @@ a#contact {
 
 a#contact:hover {
     font-family: 'Syncopate', sans-serif;
-    color: #ffffff;
+    color: #76bdd5;
 }
