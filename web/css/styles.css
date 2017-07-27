@@ -224,6 +224,12 @@ td.input-field {
     width: 65%;
 }
 
-input.input-field {
-    width: 50%;
+input.form-control {
+    width: 60%;
+}
+
+td label {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 500;
+    color: #42A4C5;
 }
