@@ -106,9 +106,9 @@
         return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'cart' => $cart));
     });
 
-    $app->get("/start_order", function() use ($app) {
-        return $app['twig']->render('store.html.twig', array('products' => Product::getAll()));
-    });
+    // $app->get("/start_order", function() use ($app) {
+    //     return $app['twig']->render('store.html.twig', array('products' => Product::getAll()));
+    // });
 
     $app->post("/start_order", function() use ($app) {
         $name = $_POST['product_name'];
@@ -194,10 +194,6 @@
         $cart->save();
         return $app['twig']->render('locations.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
-
-
-
-
 
     return $app
 ?>
