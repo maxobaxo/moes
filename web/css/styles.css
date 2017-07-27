@@ -162,12 +162,19 @@ footer {
 }
 
 .footer-container {
-    margin: 0 4rem 0 4.5rem;
+    margin: 5rem 4rem 0 4.5rem;
 }
 
 footer a {
-    font-family: 'Syncopate', sans-serif;
-    color: #d8ecf3;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
+    color: #ffffff;
+}
+
+footer a:hover {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
+    color: #ebf6f9;
 }
 
 
