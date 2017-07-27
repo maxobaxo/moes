@@ -209,3 +209,21 @@ span {
     display: inline-block;
     margin-left: 1rem;
 }
+
+/*customer-home styling*/
+table#create-account {
+    width: 75%;
+    margin: auto;
+}
+
+td.label-field {
+    width: 25%;
+}
+
+td.input-field {
+    width: 65%;
+}
+
+input.input-field {
+    width: 50%;
+}

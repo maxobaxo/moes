@@ -26,48 +26,110 @@
             <div class="row">
                 <div class="container-main">
                     <div class="main col-md-9">
-                        <h1>Your current user information:</h1>
-                        {{ warning }}
-                        {% if current_user is empty %}
-                        Please create an account!
-                        <form action="/customers" method="post">
-                            <label for="customer_contact">Customer Contact</label>
-                            <input type="text" name="customer_contact">
-                            <label for="business_name">Business Name</label>
-                            <input type="text" name="business_name" required>
-                            <label for="address">Business/Delivery Address</label>
-                            <input type="text" name="address" required>
-                            <label for="phone">Phone Number</label>
-                            <input type="text" name="phone" required>
-                            <label for="email">Email Address</label>
-                            <input type="text" name="email">
-                            <label for="login">Preferred Login</label>
-                            <input type="text" name="login">
-                            <label for="password">Preferred Password</label>
-                            <input type="text" name="password">
-                            <button type="submit">Submit New Customer!</button>
-                        </form>
+                        <table id="create-account">
+                            <thead>
+                                <td>
+                                    <h1>Your Profile</h1>
+                                    {{ warning }}
+                                    {% if current_user is empty %}
+                                    <h2>Please create an account!</h2>
+                                </td>
+                                <td></td>
+                            </thead>
+                            <tbody>
+                                <form action="/customers" method="post">
+                                    <tr>
+                                        <div class="input-group">
+                                            <td class="label-field"><label for="customer_contact">Customer Contact</label></td>
+                                            <td class="input-field"><input class="input-field" type="text" name="customer_contact"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="input-group">
+                                            <td class="label-field"><label for="business_name">Business Name</label></td>
+                                            <td class="input-field"><input class="input-field" type="text" name="business_name" required></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="input-group">
+                                            <td class="label-field"><label for="address">Business/Delivery Address</label></td>
+                                            <td class="input-field"><input class="input-field" type="text" name="address" required></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="input-group">
+                                            <td class="label-field"><label for="phone">Phone Number</label></td>
+                                            <td class="input-field"><input class="input-field" type="text" name="phone" required></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="input-group">
+                                            <td class="label-field"><label for="email">Email Address</label></td>
+                                            <td class="input-field"><input class="input-field" type="text" name="email"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="input-group">
+                                            <td class="label-field"><label for="login">Preferred Login</label></td>
+                                            <td class="input-field"><input class="input-field" type="text" name="login"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="input-group">
+                                            <td class="label-field"><label for="password">Preferred Password</label></td>
+                                            <td class="input-field"><input class="input-field" type="text" name="password"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <td class="label-field"><button type="submit">Submit New Customer!</button></td>
+                                        <td class="input-field"></td>
+                                    </tr>
+                                </form>
+                            </tbody>
+                        </table>
+
+
                         {% else %}
-                        <h3>Current business name: {{ current_user.getBusiness }}<form action="/user_edit/{{ current_user.getId }}" method="post">
-                        <input type="text" name="business_update">
-                        <input type="hidden" name="_method" value="patch">
-                        </form></h3>
-                        <h3>Current contact name: {{ current_user.getContact }}<form action="/user_edit/{{ current_user.getId }}" method="post">
-                        <input type="text" name="contact_update">
-                        <input type="hidden" name="_method" value="patch">
-                        </form></h3>
-                        <h3>Current listed address: {{ current_user.getAddress }}<form action="/user_edit/{{ current_user.getId }}" method="post">
-                        <input type="text" name="address_update">
-                        <input type="hidden" name="_method" value="patch">
-                        </form></h3>
-                        <h3>Contact phone number: {{ current_user.getPhone }}<form action="/user_edit/{{ current_user.getId }}" method="post">
-                        <input type="text" name="phone_update">
-                        <input type="hidden" name="_method" value="patch">
-                        </form></h3>
-                        <h3>Contact email address: {{ current_user.getEmail }}<form action="/user_edit/{{ current_user.getId }}" method="post">
-                        <input type="text" name="email_update">
-                        <input type="hidden" name="_method" value="patch">
-                        </form></h3>
+                            <h3>Current business name: {{ current_user.getBusiness }}
+                                <form action="/user_edit/{{ current_user.getId }}" method="post">
+                                    <div class="input-group">
+                                        <input type="text" name="business_update">
+                                        <input type="hidden" name="_method" value="patch">
+                                    </div>
+                                </form>
+                            </h3>
+                            <h3>Current contact name: {{ current_user.getContact }}
+                                <form action="/user_edit/{{ current_user.getId }}" method="post">
+                                    <div class="input-group">
+                                        <input type="text" name="contact_update">
+                                        <input type="hidden" name="_method" value="patch">
+                                    </div>
+                                </form>
+                            </h3>
+                            <h3>Current listed address: {{ current_user.getAddress }}
+                                <form action="/user_edit/{{ current_user.getId }}" method="post">
+                                    <div class="input-group">
+                                        <input type="text" name="address_update">
+                                        <input type="hidden" name="_method" value="patch">
+                                    </div>
+                                </form>
+                            </h3>
+                            <h3>Contact phone number: {{ current_user.getPhone }}
+                                <form action="/user_edit/{{ current_user.getId }}" method="post">
+                                    <div class="input-group">
+                                        <input type="text" name="phone_update">
+                                        <input type="hidden" name="_method" value="patch">
+                                    </div>
+                                </form>
+                            </h3>
+                            <h3>Contact email address: {{ current_user.getEmail }}
+                                <form action="/user_edit/{{ current_user.getId }}" method="post">
+                                    <div class="input-group">
+                                        <input type="text" name="email_update">
+                                        <input type="hidden" name="_method" value="patch">
+                                    </div>
+                                </form>
+                            </h3>
                         {% endif %}
                     </div>
 
