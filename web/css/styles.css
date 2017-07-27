@@ -204,3 +204,8 @@ td {
 .confirmation {
     text-align: right;
 }
+
+span {
+    display: inline-block;
+    margin-left: 1rem;
+}
