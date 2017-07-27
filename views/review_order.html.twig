@@ -114,6 +114,26 @@
                     </div>
                 </div>
             </div>
+
+            <div class="confirmation">
+                {% if cart.getConfirmation == 1 %}
+                    <h2>Order Confirmed!</h2>
+                    <a href="/"><h3>Continue Shopping</h3></a>
+                {% else %}
+                    <form action="/" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="cart_id" value="{{ cart.getID }}">
+                        <button type="submit">Remove your order</button>
+                    </form>
+
+                    <form action="/order_confirmed" method="post">
+                        <input type="hidden" name="cart_id" value="{{ cart.getID }}">
+                        <button type="submit">Confirm Purchase!</button>
+                    </form>
+                    <!-- <a href="/clear_cart">Remove items from cart!</a> -->
+                {% endif %}
+            </div>
+
             <footer>
                 <div class="row">
                     <div class="footer-container">
@@ -137,28 +157,29 @@
                 </div>
             </footer>
 
-            <!-- Modal -->
             <div id="customer_modal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Create An Account or Login</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form name="login" class="create-account" action="/register" method="post">
-                            <button type="submit" name="create-account">Create Account</button>
-                        </form>
-                        <form name="login" class="login" action="/login" method="post">
-                            <button type="submit" name="login">Create Account</button>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Create An Account or Login</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form name="login" class="create-account" action="/register" method="post">
+                                <button type="submit" name="create-account">Create Account</button>
+                            </form>
+                            <form name="login" class="login" action="/login" method="post">
+                                <button type="submit" name="login">Create Account</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            
+        </div><!-- container-fluid close -->
     </body>
 </html>
