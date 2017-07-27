@@ -28,6 +28,11 @@
         return $app['twig']->render('index.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
 
+    $app->post('/', function() use ($app) {
+        $cart = Cart::findByID($_POST['cart_id']);
+        return $app['twig']->render('index.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
+    });
+
     $app->post("/register", function() use ($app) {
         $warning = false;
         $current_user = false;
