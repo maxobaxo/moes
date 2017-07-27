@@ -123,6 +123,13 @@
         return $app['twig']->render('shopping.html.twig', array('products' => Product::getAll(), 'product' => $product, 'cart' => $new_cart, 'cart_products' => $new_cart->getProducts()));
     });
 
+    $app->post('/continue_order', function() use ($app) {
+        $cart = Cart::findByID($_POST['cart_id']);
+        $cart_products = $cart->getProducts();
+
+        return $app['twig']->render('shopping.html.twig', array('products' => Product::getAll(), 'cart' => $cart, 'cart_products' => $cart_products));
+    });
+
     $app->patch("/add_to_cart/{id}", function($id) use ($app) {
         $name = $_POST['product_name'];
         $price = (float)$_POST['product_price'];
@@ -168,6 +175,27 @@
 
         return $app['twig']->render('review_order.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
     });
+
+
+    $app->get("/about", function() use ($app) {
+        $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
+        $cart->save();
+        return $app['twig']->render('about.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
+    });
+
+    $app->get("/contact", function() use ($app) {
+        $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
+        $cart->save();
+        return $app['twig']->render('contact.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
+    });
+
+    $app->get("/locations", function() use ($app) {
+        $cart = new Cart(date('Y-m-d', time()), number_format(0.00, 2), 0);
+        $cart->save();
+        return $app['twig']->render('locations.html.twig', array('cart' => $cart, 'cart_products' => $cart->getProducts()));
+    });
+
+
 
 
 

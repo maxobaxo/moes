@@ -13,10 +13,10 @@
                 <!-- banner & logo -->
                 <nav class="nav container-fluid">
                     <ul class="list-inline navbar">
-                        <li class="nav-item"><a href="#">About</a></li>
+                        <li class="nav-item"><a href="/about">About</a></li>
                         <li class="nav-item"><a href="/">Store</a></li>
                         <li class="nav-item"><a href="#">Locations</a></li>
-                        <li class="nav-item"><a href="#">Contact</a></li>
+                        <li class="nav-item"><a href="contact">Contact</a></li>
                         <li class="nav-item"><a href="/login">Customers</a></li>
                     </ul>
                 </nav>
@@ -30,7 +30,7 @@
                             <!-- login & register forms will go here on their respective pages -->
                             {% if cart.getConfirmation == 1 %}
                                 <h2>Order Confirmed!</h2>
-                                <a href="/"><h3>Continue Shopping</h3></a>
+                                <a href="/"><h3>Return to Store</h3></a>
                             {% else %}
                                 <div class="invoice-header">
                                     <h1>Invoice</h1>
@@ -109,7 +109,7 @@
                                                 </form>
                                             </span>
                                             <span>
-                                                <form action="/" class="shopping-buttons" method="post">
+                                                <form action="/continue_order" class="shopping-buttons" method="post">
                                                     <input type="hidden" name="cart_id" value="{{ cart.getID }}">
                                                     <button type="submit">Keep Shopping</button>
                                                 </form>
@@ -126,7 +126,6 @@
                                     {% endif %}
                                 </div>
                             {% endif %}
-                            <a href="/clear_cart">Remove items from cart!</a>  <!-- what's happening with thus? -->
                         </div>
 
                         <div class="sidebar col-md-3">
