@@ -96,6 +96,28 @@ li.nav-item {
     padding: 4rem 0 0 0;
 }
 
+
+/*sidebar styling*/
+.panel-success > .panel-heading {
+    background-color: #eef7f2;
+}
+
+.panel-success > .panel-footer {
+    background-color: #eef7f2;
+}
+
+button.checkout {
+    background-color: #7EB49C;
+    color: #ffffff;
+    border: 2px solid #7EB49C;
+}
+
+button.checkout:hover {
+    background-color: #D0E8DA;
+    color: #ffffff;
+    border: 2px solid #D0E8DA;
+}
+
 .sidebar h1, .sidebar h2 {
     font-family: 'Crushed', sans-serif;
     font-weight: 300;
@@ -114,6 +136,8 @@ li.nav-item {
     color: #7EB49C;
 }
 
+
+/*footer styling*/
 footer {
     background-color: #42A4C5;
     color: #ffffff;
@@ -129,19 +153,10 @@ footer {
 footer a {
     font-family: 'Syncopate', sans-serif;
     color: #d8ecf3;
-
 }
 
 
 /*invoice styling*/
-/*.invoice-title h2, .invoice-title h3 {
-    display: inline-block;
-}*/
-
-.invoice {
-    /*margin-left: 5rem;*/
-}
-
 .panel-container {
     text-align: center;
     margin: auto;
@@ -182,25 +197,4 @@ td {
 
 .confirmation {
     text-align: right;
-}
-
-/*sidebar*/
-.panel-success > .panel-heading {
-    background-color: #eef7f2;
-}
-
-.panel-success > .panel-footer {
-    background-color: #eef7f2;
-}
-
-button.checkout {
-    background-color: #7EB49C;
-    color: #ffffff;
-    border: 2px solid #7EB49C;
-}
-
-button.checkout:hover {
-    background-color: #D0E8DA;
-    color: #ffffff;
-    border: 2px solid #D0E8DA;
 }
