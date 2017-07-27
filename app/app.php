@@ -106,10 +106,6 @@
         return $app['twig']->render('customer_home.html.twig', array('current_user' => $current_user, 'warning' => $warning, 'cart' => $cart));
     });
 
-    // $app->get("/start_order", function() use ($app) {
-    //     return $app['twig']->render('store.html.twig', array('products' => Product::getAll()));
-    // });
-
     $app->post("/start_order", function() use ($app) {
         $name = $_POST['product_name'];
         $price = (float)$_POST['product_price'];
