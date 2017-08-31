@@ -1,4 +1,4 @@
-# _Moes Kombucha_
+# _Moe's Kombucha_
 
 #### _PHP Group Project, July 27, 2017_
 
